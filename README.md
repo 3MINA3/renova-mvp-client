@@ -1,121 +1,128 @@
-# Renova - منصة إعادة التدوير الأولى 🌍
+# 🌍 Renova - The Premier Recycling & Eco-Commerce Platform
 
-**Renova** هي منصة ويب متطورة مبنية باستخدام **React.js** و **Vite** و **Tailwind CSS v4**، تهدف إلى تشجيع المستخدمين على الحفاظ على البيئة من خلال بيع الخردة المنزلية وتحويلها إلى منتجات معاد تدويرها. يتبنى الموقع طابعاً بيئياً عميقاً (Environmental Theme) يعتمد على ألوان الزمرد (Emerald) والأخضر الليموني (Lime) وألوان الحجر (Stone) مع تأثيرات زجاجية (Glassmorphism) وخلفيات شبكية متدرجة (Mesh Gradients) ديناميكية.
+![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
+![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white)
+![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)
+
+**Renova** is a modern, high-performance web platform built to champion environmental sustainability. It empowers users to sell household scrap materials, which are then upcycled and sold as eco-friendly products. 
+
+The application features a deep environmental aesthetic, utilizing an earthy color palette (Emerald, Lime, Stone), modern Glassmorphism, and dynamic mesh gradients to deliver a premium user experience.
 
 ---
 
-## 📂 الهيكلية العامة للمشروع (Project Structure)
+## ✨ Key Features
 
-المشروع مبني بهيكلية تعتمد على **Context API** لإدارة الحالة (State Management)، ومقسم إلى مكونات (Components) وصفحات (Pages) مستقلة لتسهيل الصيانة والتطوير.
+- **Eco-Commerce:** Browse, add to cart, and purchase recycled and upcycled products.
+- **Scrap Selling Portal:** Users can easily submit scrap materials to the platform for recycling.
+- **Role-Based Access Control:** Distinct experiences and protections for regular users and administrators.
+- **Comprehensive Admin Dashboard:** Full CRUD management for products, orders, users, and incoming scrap requests.
+- **Dark/Light Mode:** Seamlessly integrated theme switching matching the platform's nature-inspired aesthetic.
+- **Persistent State:** All data (Cart, Auth, Products) is persisted securely using `localStorage`.
+
+---
+
+## 🚀 Tech Stack
+
+- **Framework:** [React.js](https://reactjs.org/) powered by [Vite](https://vitejs.dev/) for blazing-fast builds.
+- **Styling:** [Tailwind CSS v4](https://tailwindcss.com/)
+- **State Management:** React Context API (Zero external dependencies)
+- **Data Persistence:** Local Storage API
+
+---
+
+## 🛠️ Getting Started
+
+Follow these steps to set up the project locally on your machine.
+
+### Prerequisites
+Make sure you have [Node.js](https://nodejs.org/) installed on your machine.
+
+### Installation
+
+1. **Clone the repository:**
+   ```bash
+   git clone [https://github.com/your-username/renova.git](https://github.com/your-username/renova.git)
+   ```
+
+2. **Navigate to the project directory:**
+   ```bash
+   cd renova
+   ```
+
+3. **Install dependencies:**
+   ```bash
+   npm install
+   ```
+
+4. **Start the development server:**
+   ```bash
+   npm run dev
+   ```
+
+5. **Open your browser:**
+   Navigate to `http://localhost:5173`
+
+> **Note for Admins:** To access the admin dashboard, login with the email `admin@renova.com`.
+
+---
+
+## 📂 Project Structure
+
+The project follows a modular, scalable architecture:
 
 ```text
 src/
-├── components/       # المكونات القابلة لإعادة الاستخدام (Navbar, Footer, ProductCard...)
-├── context/          # مزودات الحالة (Auth, Cart, Products, Settings...)
-├── pages/            # صفحات الموقع الرئيسية
-│   └── admin/        # صفحات لوحة تحكم المدير
-├── App.jsx           # الموجه الرئيسي (Router) وتجميع الـ Providers
-├── main.jsx          # نقطة الإدخال الرئيسية لـ React
-└── index.css         # ملف التصميم الرئيسي وتهيئات Tailwind
+├── components/       # Reusable UI components (Navbar, Footer, ProductCard, etc.)
+├── context/          # State management providers (Auth, Cart, Products, Settings, etc.)
+├── pages/            # Main application pages
+│   └── admin/        # Admin dashboard pages
+├── App.jsx           # Main application router and Provider wrappers
+├── main.jsx          # React application entry point
+└── index.css         # Global styling and Tailwind CSS configuration
 ```
 
 ---
 
-## 🧠 إدارة الحالة (Contexts)
+## 🧠 State Management (Context API)
 
-تم استخدام `React Context` بدلاً من أدوات خارجية مثل Redux لتوفير أداء سريع وإدارة حالة مبسطة. يتم تخزين جميع البيانات محلياً في `localStorage` لضمان بقاء البيانات عند تحديث الصفحة.
+To ensure rapid performance and a streamlined architecture, **React Context** is used in place of external libraries like Redux. 
 
-### 1. `AuthContext.jsx` (إدارة المصادقة)
-- **وظيفته**: يدير حالة تسجيل الدخول للمستخدم والمدير.
-- **التفاصيل**: يحتوي على دالة `login` للتحقق من بيانات الدخول (إذا كان البريد admin@renova.com فهو مدير، وإلا مستخدم عادي)، ودالة `logout`، ودالة `register` لإنشاء حسابات جديدة. يخزن بيانات المستخدم الحالي في `currentUser`.
-
-### 2. `CartContext.jsx` (إدارة سلة المشتريات)
-- **وظيفته**: تتبع المنتجات التي يضيفها المستخدم للسلة.
-- **التفاصيل**: يوفر دوال مثل `addToCart` (تزيد الكمية إذا كان المنتج موجوداً)، `removeFromCart`، `updateQuantity`، و `clearCart`. يحسب أيضاً الإجمالي `total`، وعدد العناصر `cartCount`، وتطبيق الخصم `discount`.
-
-### 3. `ProductContext.jsx` (إدارة المنتجات)
-- **وظيفته**: يمثل قاعدة بيانات المنتجات المتاحة في المتجر.
-- **التفاصيل**: يخزن قائمة المنتجات الافتراضية. يوفر دوال `addProduct` (بإمكانية رفع صورة أو استخدام رابط)، `updateProduct`، و `deleteProduct`. يستمع لتغيرات التبويبات (Storage Event) لضمان مزامنة المنتجات إذا فتح المستخدم الموقع في أكثر من نافذة.
-
-### 4. `RequestsContext.jsx` (إدارة طلبات بيع الخردة)
-- **وظيفته**: يستقبل طلبات المستخدمين الذين يرغبون ببيع خردتهم.
-- **التفاصيل**: يوفر دالة `addRequest` للمستخدمين، و `updateRequestStatus` و `deleteRequest` للمدير لتغيير حالة الطلب (قيد المراجعة، تمت الموافقة، مرفوض).
-
-### 5. `OrdersContext.jsx` (إدارة طلبات الشراء)
-- **وظيفته**: يسجل عمليات الشراء التي تتم من السلة.
-- **التفاصيل**: دالة `addOrder` تنشئ طلب جديد يحتوي على المنتجات المشتراة وإجمالي المبلغ. يمكن للمدير استخدام `updateOrderStatus` لتحديث حالة الطلب (قيد التجهيز، جاري التوصيل، مكتمل).
-
-### 6. `FavoritesContext.jsx` (إدارة المفضلة)
-- **وظيفته**: يسمح للمستخدم بحفظ المنتجات التي تعجبه.
-- **التفاصيل**: دالة `toggleFavorite` تضيف أو تزيل المنتج من المفضلة، ودالة `isFavorite` تتحقق مما إذا كان المنتج في المفضلة لتلوين أيقونة القلب في بطاقة المنتج.
-
-### 7. `SettingsContext.jsx` (إعدادات المنصة)
-- **وظيفته**: يتيح للمدير التحكم في الخيارات الديناميكية (أنواع الخردة، أقسام المنتجات).
-- **التفاصيل**: يوفر قوائم مرنة يمكن للمدير إضافة أو حذف عناصر منها مثل `addCategory` و `addScrapType`.
-
-### 8. `ThemeContext.jsx` (إدارة الوضع المضيء/الليلي)
-- **وظيفته**: التبديل بين الوضع المضيء (Light) والليلي (Dark).
-- **التفاصيل**: يضيف أو يزيل صنف `dark` من عنصر الـ `html` الجذري (`document.documentElement`).
+- **`AuthContext`:** Manages authentication states for both users and administrators.
+- **`CartContext`:** Handles shopping cart logic, discounts, and dynamic totals.
+- **`ProductContext`:** Acts as the virtual database. Supports CRUD operations (with Canvas image compression) and cross-tab synchronization via Storage Events.
+- **`RequestsContext`:** Manages user submissions for selling scrap. 
+- **`OrdersContext`:** Tracks e-commerce transactions and fulfillment statuses.
+- **`FavoritesContext`:** Enables users to bookmark products.
+- **`SettingsContext`:** Provides dynamic configuration (categories, scrap types) for admins.
+- **`ThemeContext`:** Manages the system's Dark/Light mode.
 
 ---
 
-## 🧩 المكونات الرئيسية (Components)
+## 🌐 Application Views
 
-### `Navbar.jsx`
-- شريط التنقل العلوي الذكي. يتفاعل مع حالة تسجيل الدخول، يعرض أيقونات السلة والمفضلة مع فقاعات العدادات (Badges) الحية. يحتوي على زر التبديل بين الوضعين المضيء والليلي.
+### 👤 User Pages
+- **`Home`:** The landing page featuring the Hero section and a grid of featured eco-products.
+- **`SellScrap`:** A comprehensive form for users to submit scrap materials.
+- **`Cart` & `Favorites`:** E-commerce essentials for managing purchases and bookmarked items.
+- **`MyOrders`:** A tracking dashboard for past purchases.
 
-### `HeroSection.jsx`
-- القسم الترحيبي الأول (Hero) يحمل عنوان "شريكك نحو بيئة مستدامة". مبرمج بتأثيرات بصرية ثلاثية الأبعاد و أشكال متوهجة `animate-pulse-glow`. يوجه المستخدم لصفحة بيع الخردة.
-
-### `ProductCard.jsx`
-- مكون يعرض المنتج الفردي. يحتوي على صورة، قسم (Category Badge)، أيقونة تفاعل للمفضلة، وتفاصيل السعر وزر الإضافة للسلة. مصمم بتأثيرات حركية عند تمرير الماوس (Hover Scale & Translate).
-
-### `ProtectedRoute.jsx` و `AdminRoute.jsx`
-- مكونات أمان (HOC) تمنع الوصول للصفحات المحمية. `ProtectedRoute` يمنع الزوار غير المسجلين، بينما `AdminRoute` يمنع أي شخص ليس لديه صلاحية (role === 'admin').
-
----
-
-## 📄 صفحات المستخدم (User Pages)
-
-1. **`Home.jsx`**: الصفحة الرئيسية، تجمع الـ `HeroSection` ومجموعة من المنتجات البارزة.
-2. **`SellScrap.jsx`**: نموذج متكامل لبيع الخردة. يحتوي على خيارات رفع صور (عبر رابط أو ملف)، وتحديد نوع الخردة والوزن والموقع.
-3. **`Cart.jsx`**: صفحة السلة. تمكن المستخدم من تعديل الكميات، حذف المنتجات، إدخال كود خصم، وإتمام الشراء (Checkout).
-4. **`Favorites.jsx`**: شبكة تعرض جميع المنتجات التي فضلها المستخدم.
-5. **`MyOrders.jsx`**: تتبع الطلبات الشخصية السابقة لمعرفة حالتها.
-6. **`Contact.jsx`**: نموذج تواصل وإحصائيات عامة للمنصة.
-7. **`Login.jsx` & `Register.jsx`**: صفحات المصادقة والتسجيل.
+### 🛡️ Admin Dashboard
+- **`Dashboard`:** Central command center displaying high-level metrics.
+- **`ProductsManager` & `SettingsManager`:** Full inventory and store configuration management.
+- **`OrdersManager` & `RequestsManager`:** Interfaces to process customer orders and incoming scrap offers.
+- **`UsersManager`:** A directory of all registered platform users.
 
 ---
 
-## 🛠️ صفحات لوحة الإدارة (Admin Pages)
+## 🎨 Design System & UI/UX
 
-جميع صفحات الإدارة مجمعة تحت التخطيط `AdminLayout.jsx` الذي يوفر شريطاً جانبياً (Sidebar) للتنقل.
+The visual identity is powered by **Tailwind CSS v4** and customized within `index.css`:
 
-1. **`Dashboard.jsx`**: لوحة القيادة المركزية. تعرض إحصائيات سريعة (إجمالي المستخدمين، المبيعات، الطلبات المعلقة) باستخدام بطاقات إحصائية.
-2. **`ProductsManager.jsx`**: نظام كامل (CRUD) لإدارة المنتجات (إضافة، تعديل، حذف). يدعم ضغط الصور باستخدام `Canvas` لحفظ المساحة في الـ `localStorage`.
-3. **`OrdersManager.jsx`**: إدارة طلبات شراء المستخدمين وتحديث حالتها (مكتمل، جاري التوصيل).
-4. **`RequestsManager.jsx`**: إدارة طلبات الخردة الواردة (قبول أو رفض العروض).
-5. **`UsersManager.jsx`**: عرض قائمة بجميع المستخدمين المسجلين، وتحديد ما إذا كانوا نشطين وتاريخ انضمامهم.
-6. **`SettingsManager.jsx`**: لتعديل أقسام المتجر وأنواع الخردة المقبولة ديناميكياً.
-7. **`AdminLogin.jsx`**: صفحة دخول خاصة ومنفصلة لمدير النظام.
+- **Custom Color Palette:** Tailwind's default colors are remapped via `@theme` to nature-inspired tones (Emerald, Lime, Stone).
+- **Mesh Gradients:** Complex `radial-gradient` layers generate a dynamic, fixed mesh gradient that adds visual depth.
+- **Glassmorphism:** The `.glass` and `.glass-dark` utility classes provide a frosted glass effect with tailored transparency and backdrop blur.
+- **Animations:** Custom keyframes (`float`, `pulse-glow`) bring the UI to life. Premium text gradients seamlessly blend nature's colors for typography and pricing.
 
 ---
 
-## 🎨 التصميم والألوان (Theming & CSS)
-
-ملف `index.css` هو قلب التصميم. يعتمد على **Tailwind CSS v4**.
-تم تعديل لوحة ألوان Tailwind القياسية لتناسب الطابع البيئي باستخدام `@theme`:
-- `color-green-*` ⬅️ متصل بـ `emerald` (أخضر ورقي عميق).
-- `color-teal-*` ⬅️ متصل بـ `lime` (أخضر ليموني مشرق).
-- `color-gray-*` و `color-slate-*` ⬅️ متصل بـ `stone` (ألوان حجرية ترابية دافئة).
-
-**الخلفية الشبكية (Mesh Gradient)**:
-بدلاً من الخلفيات المصمتة، تم استخدام `radial-gradient` المتعددة على الـ `body` في الـ `@layer base` لتوليد تدرج لوني شبكي متحرك وثابت (Fixed) يعطي إحساساً بالفخامة والعمق البصري في الوضعين المضيء والليلي.
-
-**تأثيرات أخرى (Animations)**:
-- `.glass` و `.glass-dark`: تأثير الزجاج (Glassmorphism) بشفافية وتأثير ضبابي (Blur).
-- `@keyframes float` و `@keyframes pulse-glow`: رسوم متحركة مخصصة لإعطاء حيوية للموقع مثل الأشكال المتوهجة التي تنبض وتطفو في الـ Hero.
-- `.text-gradient-premium`: تدرج لوني خاص للنصوص والأموال يدمج ألوان الطبيعة.
-
----
-**تم بناء هذا الكود بهدف الاستدامة، السرعة، وتوفير تجربة مستخدم (UX) فائقة السلاسة والفخامة.** 🌱
+> **Built for sustainability, speed, and a premium user experience.** 🌱
