@@ -32,7 +32,7 @@ const UsersManager = () => {
       name: user.name || '', 
       email: user.email || '', 
       password: user.password || '',
-      primaryPhone: user.phoneNumbers && user.phoneNumbers.length > 0 ? user.phoneNumbers[0] : '',
+      primaryPhone: user?.phoneNumbers?.[0] || '',
       dateOfBirth: user.dateOfBirth ? new Date(user.dateOfBirth).toISOString().split('T')[0] : '',
       city: user.address?.city || '',
       street: user.address?.street || '',
@@ -78,14 +78,14 @@ const UsersManager = () => {
   return (
     <div className="space-y-8 pb-10">
       <div>
-        <h1 className="text-3xl font-extrabold text-gray-900 dark:text-white">{'إدارة العملاء'}</h1>
-        <p className="text-gray-500 dark:text-gray-400 mt-2">{'استعراض وإدارة حسابات العملاء المسجلين في المنصة وتعديل بياناتهم بكل سهولة.'}</p>
+        <h1 className="text-3xl font-extrabold text-gray-900 dark:text-white">إدارة العملاء</h1>
+        <p className="text-gray-500 dark:text-gray-400 mt-2">استعراض وإدارة حسابات العملاء المسجلين في المنصة وتعديل بياناتهم بكل سهولة.</p>
       </div>
 
       {usersToDisplay.length === 0 ? (
         <div className="bg-white dark:bg-slate-900 rounded-3xl p-16 text-center shadow-sm border border-gray-100 dark:border-slate-800">
           <UserIcon className="w-16 h-16 text-gray-300 dark:text-gray-600 mx-auto mb-4" />
-          <p className="text-gray-500 dark:text-gray-400 text-lg font-medium">{'لا يوجد عملاء مسجلين حالياً.'}</p>
+          <p className="text-gray-500 dark:text-gray-400 text-lg font-medium">لا يوجد عملاء مسجلين حالياً.</p>
         </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-6">
@@ -96,15 +96,16 @@ const UsersManager = () => {
                 /* Edit Mode Card */
                 <div className="p-6 flex-1 flex flex-col gap-4 animate-in fade-in duration-300">
                   <div className="flex items-center justify-between mb-2">
-                    <h3 className="font-extrabold text-lg text-teal-600 dark:text-teal-400">{'تعديل بيانات المستخدم'}</h3>
+                    <h3 className="font-extrabold text-lg text-teal-600 dark:text-teal-400">تعديل بيانات المستخدم</h3>
                   </div>
                   
                   <div className="space-y-3">
                     <div>
-                      <label className="block text-xs font-bold text-gray-500 dark:text-gray-400 mb-1">الاسم</label>
+                      <label htmlFor="name" className="block text-xs font-bold text-gray-500 dark:text-gray-400 mb-1">الاسم</label>
                       <div className="relative">
                         <UserIcon className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
                         <input
+                          id="name"
                           type="text"
                           value={editFormData.name}
                           onChange={(e) => setEditFormData({...editFormData, name: e.target.value})}
@@ -114,10 +115,11 @@ const UsersManager = () => {
                     </div>
                     
                     <div>
-                      <label className="block text-xs font-bold text-gray-500 dark:text-gray-400 mb-1">البريد الإلكتروني</label>
+                      <label htmlFor="email" className="block text-xs font-bold text-gray-500 dark:text-gray-400 mb-1">البريد الإلكتروني</label>
                       <div className="relative">
                         <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
                         <input
+                          id="email"
                           type="email"
                           value={editFormData.email}
                           onChange={(e) => setEditFormData({...editFormData, email: e.target.value})}
@@ -128,10 +130,11 @@ const UsersManager = () => {
                     </div>
 
                     <div>
-                      <label className="block text-xs font-bold text-gray-500 dark:text-gray-400 mb-1">كلمة المرور</label>
+                      <label htmlFor="password" className="block text-xs font-bold text-gray-500 dark:text-gray-400 mb-1">كلمة المرور</label>
                       <div className="relative">
                         <Key className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
                         <input
+                          id="password"
                           type="text"
                           value={editFormData.password}
                           onChange={(e) => setEditFormData({...editFormData, password: e.target.value})}
@@ -142,10 +145,11 @@ const UsersManager = () => {
                     </div>
 
                     <div>
-                      <label className="block text-xs font-bold text-gray-500 dark:text-gray-400 mb-1">الهاتف الأساسي</label>
+                      <label htmlFor="primaryPhone" className="block text-xs font-bold text-gray-500 dark:text-gray-400 mb-1">الهاتف الأساسي</label>
                       <div className="relative">
                         <Phone className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
                         <input
+                          id="primaryPhone"
                           type="text"
                           value={editFormData.primaryPhone}
                           onChange={(e) => setEditFormData({...editFormData, primaryPhone: e.target.value})}
@@ -156,10 +160,11 @@ const UsersManager = () => {
                     </div>
 
                     <div>
-                      <label className="block text-xs font-bold text-gray-500 dark:text-gray-400 mb-1">تاريخ الميلاد</label>
+                      <label htmlFor="dateOfBirth" className="block text-xs font-bold text-gray-500 dark:text-gray-400 mb-1">تاريخ الميلاد</label>
                       <div className="relative">
                         <Calendar className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
                         <input
+                          id="dateOfBirth"
                           type="date"
                           value={editFormData.dateOfBirth}
                           onChange={(e) => setEditFormData({...editFormData, dateOfBirth: e.target.value})}
@@ -170,8 +175,9 @@ const UsersManager = () => {
 
                     <div className="grid grid-cols-2 gap-3">
                       <div>
-                        <label className="block text-xs font-bold text-gray-500 dark:text-gray-400 mb-1">المدينة (أساسي)</label>
+                        <label htmlFor="city" className="block text-xs font-bold text-gray-500 dark:text-gray-400 mb-1">المدينة (أساسي)</label>
                         <input
+                          id="city"
                           type="text"
                           value={editFormData.city}
                           onChange={(e) => setEditFormData({...editFormData, city: e.target.value})}
@@ -179,8 +185,9 @@ const UsersManager = () => {
                         />
                       </div>
                       <div>
-                        <label className="block text-xs font-bold text-gray-500 dark:text-gray-400 mb-1">الشارع (أساسي)</label>
+                        <label htmlFor="street" className="block text-xs font-bold text-gray-500 dark:text-gray-400 mb-1">الشارع (أساسي)</label>
                         <input
+                          id="street"
                           type="text"
                           value={editFormData.street}
                           onChange={(e) => setEditFormData({...editFormData, street: e.target.value})}
@@ -195,7 +202,7 @@ const UsersManager = () => {
                         <label className="block text-xs font-bold text-gray-500 dark:text-gray-400 mb-3">العناوين الإضافية المحفوظة</label>
                         <div className="space-y-3 max-h-48 overflow-y-auto custom-scrollbar pl-1">
                           {editFormData.deliveryAddresses.map((addr, idx) => (
-                            <div key={idx} className="p-3 bg-gray-50 dark:bg-slate-800 rounded-xl border border-gray-200 dark:border-slate-700 relative group">
+                            <div key={addr.id || `addr-${idx}-${addr.city}`} className="p-3 bg-gray-50 dark:bg-slate-800 rounded-xl border border-gray-200 dark:border-slate-700 relative group">
                               <button 
                                 type="button"
                                 onClick={() => {
@@ -279,7 +286,7 @@ const UsersManager = () => {
                         {user.phoneNumbers && user.phoneNumbers.length > 0 ? (
                           <div className="flex flex-wrap gap-1.5" dir="ltr">
                             {user.phoneNumbers.map((phone, idx) => (
-                              <span key={idx} className="bg-gray-100 dark:bg-slate-800 text-gray-700 dark:text-gray-300 text-xs font-bold px-2 py-1 rounded-md">
+                              <span key={phone} className="bg-gray-100 dark:bg-slate-800 text-gray-700 dark:text-gray-300 text-xs font-bold px-2 py-1 rounded-md">
                                 {phone}
                               </span>
                             ))}
@@ -311,7 +318,7 @@ const UsersManager = () => {
                           {user.deliveryAddresses && user.deliveryAddresses.length > 0 && (
                             <div className="space-y-2 mt-2">
                               {user.deliveryAddresses.map((addr, idx) => (
-                                <div key={idx} className="bg-gray-50 dark:bg-slate-800 p-2.5 rounded-lg border border-gray-100 dark:border-slate-700">
+                                <div key={addr.id || `addr-${idx}-${addr.city}`} className="bg-gray-50 dark:bg-slate-800 p-2.5 rounded-lg border border-gray-100 dark:border-slate-700">
                                   <span className="block text-[10px] font-bold text-gray-500 dark:text-gray-400 mb-1">عنوان محفوظ {idx + 1}</span>
                                   <p className="text-sm text-gray-700 dark:text-gray-300">
                                     {addr.city}، {addr.street}

@@ -48,7 +48,7 @@ const Cart = () => {
       }
     } else if (addressMode.startsWith('delivery_')) {
       const index = parseInt(addressMode.split('_')[1], 10);
-      const selectedDelivery = user.deliveryAddresses[index];
+      const selectedDelivery = user?.deliveryAddresses?.[index];
       if (selectedDelivery) {
         finalAddress = `${selectedDelivery.city}، ${selectedDelivery.street}`;
       } else {
@@ -62,9 +62,9 @@ const Cart = () => {
       }
       finalAddress = `${newCity}، ${newStreet}`;
       
-      const updatedDeliveryAddresses = [...(user.deliveryAddresses || []), { city: newCity, street: newStreet }];
+      const updatedDeliveryAddresses = [...(user?.deliveryAddresses || []), { city: newCity, street: newStreet }];
       // Save the new address to the user's deliveryAddresses list
-      updateUser(user.id, { 
+      updateUser(user?.id, { 
         deliveryAddresses: updatedDeliveryAddresses
       });
       toast.success('تم حفظ العنوان الجديد في ملفك الشخصي');
@@ -79,9 +79,9 @@ const Cart = () => {
 
     const orderData = {
       ...purchaseOrder,
-      userId: user.id,
-      userEmail: user.email,
-      userName: user.name,
+      userId: user?.id,
+      userEmail: user?.email,
+      userName: user?.name,
       address: finalAddress,
       phone: user?.phoneNumbers?.[0] || user?.phone || 'غير متوفر',
       items: cart,
@@ -101,13 +101,13 @@ const Cart = () => {
         <div className="bg-gray-50 dark:bg-slate-800 p-6 rounded-full mb-6">
           <ShoppingBag className="w-20 h-20 text-gray-300 dark:text-gray-600" />
         </div>
-        <h2 className="text-2xl font-bold mb-2 text-gray-800 dark:text-white">{'سلة المشتريات فارغة'}</h2>
-        <p className="mb-8">{'تصفح منتجاتنا وأضف ما تحتاجه هنا.'}</p>
+        <h2 className="text-2xl font-bold mb-2 text-gray-800 dark:text-white">سلة المشتريات فارغة</h2>
+        <p className="mb-8">تصفح منتجاتنا وأضف ما تحتاجه هنا.</p>
         <Link 
           to="/" 
           className="bg-gradient-to-r from-green-600 to-teal-500 hover:from-green-700 hover:to-teal-600 text-white px-8 py-3.5 rounded-xl font-bold transition-all shadow-md hover:shadow-lg transform hover:-translate-y-0.5"
         >
-          {'تصفح المنتجات'}
+          تصفح المنتجات
         </Link>
       </div>
     );
@@ -117,7 +117,7 @@ const Cart = () => {
     <div className="max-w-6xl mx-auto space-y-8 animate-in fade-in duration-500">
       <div className="flex items-center gap-3 border-b border-gray-100 dark:border-slate-800 pb-4">
         <ShoppingBag className="w-8 h-8 text-teal-600 dark:text-teal-500" />
-        <h1 className="text-3xl font-extrabold text-gray-900 dark:text-white">{'سلة المشتريات'}</h1>
+        <h1 className="text-3xl font-extrabold text-gray-900 dark:text-white">سلة المشتريات</h1>
       </div>
       
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 relative">
@@ -134,7 +134,7 @@ const Cart = () => {
               </div>
               <div className="flex-grow text-center sm:text-start">
                 <h3 className="font-bold text-lg text-gray-800 dark:text-white mb-1">{item.name}</h3>
-                <span className="text-teal-600 dark:text-teal-400 font-bold">{item.price} {'ج.م'}</span>
+                <span className="text-teal-600 dark:text-teal-400 font-bold">{item.price} ج.م</span>
               </div>
               
               {/* Quantity Controls */}
@@ -159,8 +159,8 @@ const Cart = () => {
               {/* Total per item & Delete */}
               <div className="flex items-center gap-4 min-w-[140px] justify-end">
                 <div className="flex flex-col text-start">
-                  <span className="text-xs text-gray-400 dark:text-gray-500 font-medium">{'الإجمالي'}</span>
-                  <span className="font-black text-gray-800 dark:text-white">{item.price * item.quantity} {'ج.م'}</span>
+                  <span className="text-xs text-gray-400 dark:text-gray-500 font-medium">الإجمالي</span>
+                  <span className="font-black text-gray-800 dark:text-white">{item.price * item.quantity} ج.م</span>
                 </div>
                 <button 
                   onClick={() => removeFromCart(item.id)}
@@ -180,9 +180,9 @@ const Cart = () => {
             
             <div className="border-b border-gray-100 dark:border-slate-800 pb-5 flex flex-col gap-2">
               <div className="flex justify-between items-center">
-                <span className="font-bold text-gray-900 dark:text-white">{'الإجمالي'}</span>
+                <span className="font-bold text-gray-900 dark:text-white">الإجمالي</span>
                 <span className="text-3xl font-black text-transparent bg-clip-text bg-gradient-to-r from-green-600 to-teal-500">
-                  {cartTotal} <span className="text-lg">{'ج.م'}</span>
+                  {cartTotal} <span className="text-lg">ج.م</span>
                 </span>
               </div>
             </div>
@@ -193,11 +193,11 @@ const Cart = () => {
                 className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-green-600 to-teal-500 hover:from-green-700 hover:to-teal-600 text-white px-6 py-4 rounded-xl font-bold transition-all shadow-md hover:shadow-lg transform active:scale-95 mt-6"
               >
                 <CreditCard className="w-5 h-5" />
-                <span>{'إتمام الطلب'}</span>
+                <span>إتمام الطلب</span>
               </button>
             ) : (
               <form onSubmit={submitOrder} className="space-y-4 animate-in slide-in-from-top-4 duration-300">
-                <h3 className="font-bold text-gray-800 dark:text-white border-b border-gray-100 dark:border-slate-800 pb-2">{'بيانات التوصيل'}</h3>
+                <h3 className="font-bold text-gray-800 dark:text-white border-b border-gray-100 dark:border-slate-800 pb-2">بيانات التوصيل</h3>
                 
                 <AddressSelector 
                   user={user}
@@ -214,14 +214,14 @@ const Cart = () => {
                     type="submit"
                     className="flex-1 bg-gradient-to-r from-green-600 to-teal-500 hover:from-green-700 hover:to-teal-600 text-white px-4 py-3 rounded-xl font-bold transition-all shadow-md transform active:scale-95"
                   >
-                    {'تأكيد الطلب'}
+                    تأكيد الطلب
                   </button>
                   <button 
                     type="button"
                     onClick={() => setIsCheckingOut(false)}
                     className="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-600 dark:bg-slate-800 dark:hover:bg-slate-700 dark:text-gray-300 px-4 py-3 rounded-xl font-bold transition-all"
                   >
-                    {'إلغاء'}
+                    إلغاء
                   </button>
                 </div>
               </form>

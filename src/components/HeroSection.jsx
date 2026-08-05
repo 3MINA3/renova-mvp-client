@@ -21,11 +21,11 @@ const HeroSection = () => {
           </div>
 
           <h1 className="text-4xl md:text-5xl lg:text-7xl font-black leading-tight">
-            {'نحو بيئة أنظف و'} <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-lime-400">{'مستقبل أفضل'}</span>
+            نحو بيئة أنظف و <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-lime-400">مستقبل أفضل</span>
           </h1>
 
           <p className="text-lg md:text-xl text-gray-300 max-w-2xl leading-relaxed">
-            {'منصة متخصصة في شراء الخردة المنزلية وإعادة تدويرها إلى منتجات عالية الجودة. انضم إلينا في حماية البيئة وتحقيق ربح.'}
+            منصة متخصصة في شراء الخردة المنزلية وإعادة تدويرها إلى منتجات عالية الجودة. انضم إلينا في حماية البيئة وتحقيق ربح.
           </p>
 
           <div className="pt-6 flex flex-col sm:flex-row items-center gap-4 justify-center md:justify-start">
@@ -33,7 +33,7 @@ const HeroSection = () => {
               to="/sell-scrap"
               className="group flex items-center justify-center gap-3 bg-gradient-to-r from-emerald-600 to-lime-600 hover:from-emerald-500 hover:to-lime-500 text-white font-bold text-lg px-8 py-4 rounded-2xl transition-all shadow-lg hover:shadow-emerald-500/25 transform active:scale-95 w-full sm:w-auto border border-emerald-400/20"
             >
-              <span>{'ساهم في التدوير'}</span>
+              <span>ساهم في التدوير</span>
               <Arrow className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
             </Link>
           </div>

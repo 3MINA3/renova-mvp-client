@@ -4,16 +4,16 @@ import { useNavigate, Link } from 'react-router-dom';
 import { LogIn, UserPlus } from 'lucide-react';
 import { toast } from 'sonner';
 
+const validateEmail = (email) => {
+  const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return re.test(String(email).toLowerCase());
+};
+
 const Login = () => {
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
   const { loginUser } = useAuth();
   const navigate = useNavigate();
-  
-  const validateEmail = (email) => {
-    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return re.test(String(email).toLowerCase());
-  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -48,17 +48,18 @@ const Login = () => {
             <LogIn className="w-8 h-8" />
           </div>
           <h2 className="text-3xl font-extrabold text-gray-900 dark:text-white">
-            {'تسجيل الدخول'}
+            تسجيل الدخول
           </h2>
           <p className="text-gray-500 dark:text-gray-400 mt-2">
-            {'مرحباً بك مجدداً في سوق Renova'}
+            مرحباً بك مجدداً في سوق Renova
           </p>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-5 animate-in slide-in-from-right-8 duration-300">
           <div>
-            <label className="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-2">{'البريد الإلكتروني'}</label>
+            <label htmlFor="email" className="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-2">البريد الإلكتروني</label>
             <input 
+              id="email"
               type="email" 
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -69,15 +70,16 @@ const Login = () => {
           
           <div>
             <div className="flex justify-between items-center mb-2">
-              <label className="block text-sm font-bold text-gray-700 dark:text-gray-300">{'كلمة المرور'}</label>
+              <label htmlFor="password" className="block text-sm font-bold text-gray-700 dark:text-gray-300">كلمة المرور</label>
               <Link 
                 to="/contact"
                 className="text-xs font-bold text-teal-600 dark:text-teal-400 hover:text-teal-700 dark:hover:text-teal-300 transition-colors"
               >
-                {'نسيت كلمة المرور؟'}
+                نسيت كلمة المرور؟
               </Link>
             </div>
             <input 
+              id="password"
               type="password" 
               value={password}
               onChange={(e) => setPassword(e.target.value)}
@@ -88,20 +90,20 @@ const Login = () => {
 
           <button 
             type="submit" 
-            className="w-full bg-gradient-to-r from-gray-900 to-black hover:from-black hover:to-gray-900 text-white font-bold py-3.5 rounded-xl transition-all shadow-md transform active:scale-95 flex items-center justify-center gap-2 mt-4"
+            className="w-full bg-gradient-to-r from-gray-900 to-black hover:from-black hover:to-gray-900 text-white font-bold py-3.5 rounded-xl transition-all shadow-md active:scale-95 flex items-center justify-center gap-2 mt-4"
           >
-            <span>{'دخول'}</span>
+            <span>دخول</span>
           </button>
         </form>
 
         <div className="mt-8 text-center border-t border-gray-100 dark:border-slate-800 pt-6">
-          <p className="text-gray-500 dark:text-gray-400 mb-3">{'ليس لديك حساب؟'}</p>
+          <p className="text-gray-500 dark:text-gray-400 mb-3">ليس لديك حساب؟</p>
           <Link 
             to="/register" 
             className="inline-flex items-center justify-center gap-2 text-teal-600 hover:text-teal-700 font-bold transition-colors"
           >
             <UserPlus className="w-4 h-4" />
-            <span>{'إنشاء حساب جديد'}</span>
+            <span>إنشاء حساب جديد</span>
           </Link>
         </div>
       </div>

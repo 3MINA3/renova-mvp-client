@@ -29,18 +29,18 @@ const RequestsManager = () => {
     switch(status) {
       case 'new':
       case 'pending': // fallback for old data
-        return <span className="bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-500 px-3 py-1.5 rounded-full text-xs font-bold border border-blue-200 dark:border-blue-800">{'جديد'}</span>;
+        return <span className="bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-500 px-3 py-1.5 rounded-full text-xs font-bold border border-blue-200 dark:border-blue-800">جديد</span>;
       case 'contacted':
-        return <span className="bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-400 px-3 py-1.5 rounded-full text-xs font-bold border border-purple-200 dark:border-purple-800">{'تم التواصل'}</span>;
+        return <span className="bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-400 px-3 py-1.5 rounded-full text-xs font-bold border border-purple-200 dark:border-purple-800">تم التواصل</span>;
       case 'negotiating':
-        return <span className="bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-500 px-3 py-1.5 rounded-full text-xs font-bold border border-orange-200 dark:border-orange-800">{'جاري التفاوض'}</span>;
+        return <span className="bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-500 px-3 py-1.5 rounded-full text-xs font-bold border border-orange-200 dark:border-orange-800">جاري التفاوض</span>;
       case 'accepted':
       case 'approved': // fallback for old data
-        return <span className="bg-teal-100 dark:bg-teal-900/30 text-teal-700 dark:text-teal-400 px-3 py-1.5 rounded-full text-xs font-bold border border-teal-200 dark:border-teal-800">{'مقبول'}</span>;
+        return <span className="bg-teal-100 dark:bg-teal-900/30 text-teal-700 dark:text-teal-400 px-3 py-1.5 rounded-full text-xs font-bold border border-teal-200 dark:border-teal-800">مقبول</span>;
       case 'rejected':
-        return <span className="bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-400 px-3 py-1.5 rounded-full text-xs font-bold border border-red-200 dark:border-red-800">{'مرفوض'}</span>;
+        return <span className="bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-400 px-3 py-1.5 rounded-full text-xs font-bold border border-red-200 dark:border-red-800">مرفوض</span>;
       case 'completed':
-        return <span className="bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-500 px-3 py-1.5 rounded-full text-xs font-bold border border-green-200 dark:border-green-800">{'مكتمل'}</span>;
+        return <span className="bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-500 px-3 py-1.5 rounded-full text-xs font-bold border border-green-200 dark:border-green-800">مكتمل</span>;
       default:
         return status;
     }
@@ -62,8 +62,8 @@ const RequestsManager = () => {
       {/* Header & Filters */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
-          <h1 className="text-3xl font-extrabold text-gray-900 dark:text-white">{'طلبات بيع الخردة'}</h1>
-          <p className="text-gray-500 dark:text-gray-400 mt-2">{'إدارة طلبات المستخدمين لبيع الخردة الخاصة بهم'}</p>
+          <h1 className="text-3xl font-extrabold text-gray-900 dark:text-white">طلبات بيع الخردة</h1>
+          <p className="text-gray-500 dark:text-gray-400 mt-2">إدارة طلبات المستخدمين لبيع الخردة الخاصة بهم</p>
         </div>
         
         {/* Filters */}
@@ -88,8 +88,8 @@ const RequestsManager = () => {
           <div className="bg-gray-50 dark:bg-slate-800 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
             <Inbox className="w-10 h-10 text-gray-300 dark:text-gray-600" />
           </div>
-          <h3 className="text-xl font-bold text-gray-800 dark:text-white mb-2">{'لا يوجد طلبات حالياً'}</h3>
-          <p className="text-gray-500 dark:text-gray-400">{'ستظهر الطلبات هنا فور قيام المستخدمين بتقديمها.'}</p>
+          <h3 className="text-xl font-bold text-gray-800 dark:text-white mb-2">لا يوجد طلبات حالياً</h3>
+          <p className="text-gray-500 dark:text-gray-400">ستظهر الطلبات هنا فور قيام المستخدمين بتقديمها.</p>
         </div>
       ) : (
         <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
@@ -103,7 +103,7 @@ const RequestsManager = () => {
                     <Recycle className="w-5 h-5" />
                   </div>
                   <div>
-                    <span className="text-xs font-bold text-gray-400 dark:text-gray-500 block">{'رقم الطلب'}</span>
+                    <span className="text-xs font-bold text-gray-400 dark:text-gray-500 block">رقم الطلب</span>
                     <span className="font-mono font-bold text-gray-800 dark:text-gray-200">#{req.id}</span>
                   </div>
                 </div>
@@ -115,20 +115,20 @@ const RequestsManager = () => {
                 
                 {/* Scrap Info */}
                 <div className="space-y-4">
-                  <h4 className="font-bold text-gray-700 dark:text-gray-300 border-b border-gray-100 dark:border-slate-800 pb-2">{'بيانات الخردة'}</h4>
+                  <h4 className="font-bold text-gray-700 dark:text-gray-300 border-b border-gray-100 dark:border-slate-800 pb-2">بيانات الخردة</h4>
                   
                   <div className="bg-gray-50 dark:bg-slate-800 p-4 rounded-2xl space-y-3">
                     <div className="flex justify-between items-center">
-                      <span className="text-xs text-gray-500 dark:text-gray-400 font-bold">{'النوع'}</span>
+                      <span className="text-xs text-gray-500 dark:text-gray-400 font-bold">النوع</span>
                       <span className="font-bold text-gray-900 dark:text-white bg-white dark:bg-slate-700 px-3 py-1 rounded-lg border border-gray-200 dark:border-slate-600 shadow-sm">{req.type}</span>
                     </div>
                     <div className="flex justify-between items-center">
-                      <span className="text-xs text-gray-500 dark:text-gray-400 font-bold">{'التاريخ'}</span>
+                      <span className="text-xs text-gray-500 dark:text-gray-400 font-bold">التاريخ</span>
                       <span className="font-bold text-gray-900 dark:text-white" dir="ltr">{new Date(req.date).toLocaleDateString()}</span>
                     </div>
                     {req.determinedPrice && (
                       <div className="mt-3 pt-3 border-t border-gray-200 dark:border-slate-700 flex justify-between items-center">
-                        <span className="text-xs text-teal-600 dark:text-teal-400 font-bold">{'السعر المطلوب'}</span>
+                        <span className="text-xs text-teal-600 dark:text-teal-400 font-bold">السعر المطلوب</span>
                         <span className="font-black text-lg text-teal-700 dark:text-teal-300">{req.determinedPrice} ج.م</span>
                       </div>
                     )}
@@ -137,7 +137,7 @@ const RequestsManager = () => {
 
                 {/* User Info */}
                 <div className="space-y-4">
-                  <h4 className="font-bold text-gray-700 dark:text-gray-300 border-b border-gray-100 dark:border-slate-800 pb-2">{'بيانات العميل'}</h4>
+                  <h4 className="font-bold text-gray-700 dark:text-gray-300 border-b border-gray-100 dark:border-slate-800 pb-2">بيانات العميل</h4>
                   
                   <div className="space-y-3">
                     <div className="flex items-center gap-3">
@@ -175,7 +175,7 @@ const RequestsManager = () => {
                 {/* Additional Details (Description & Image) */}
                 {(req.description || req.image) && (
                   <div className="md:col-span-2 mt-2 space-y-4">
-                    <h4 className="font-bold text-gray-700 dark:text-gray-300 border-b border-gray-100 dark:border-slate-800 pb-2">{'تفاصيل إضافية'}</h4>
+                    <h4 className="font-bold text-gray-700 dark:text-gray-300 border-b border-gray-100 dark:border-slate-800 pb-2">تفاصيل إضافية</h4>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       {req.description && (
                         <div className="bg-amber-50 dark:bg-amber-900/10 border border-amber-100 dark:border-amber-900/30 p-4 rounded-xl flex items-start gap-3">

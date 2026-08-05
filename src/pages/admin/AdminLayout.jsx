@@ -31,8 +31,8 @@ const AdminLayout = () => {
             <ShieldCheck className="w-6 h-6 text-white" />
           </div>
           <div>
-            <h1 className="text-xl font-black text-gray-900 dark:text-white"><span className="font-brand">{'Renova'}</span> Admin</h1>
-            <p className="text-xs text-gray-500 dark:text-gray-400">{'لوحة التحكم'}</p>
+            <h1 className="text-xl font-black text-gray-900 dark:text-white"><span className="font-brand">Renova</span> Admin</h1>
+            <p className="text-xs text-gray-500 dark:text-gray-400">لوحة التحكم</p>
           </div>
         </div>
 
@@ -59,7 +59,7 @@ const AdminLayout = () => {
         <div className="p-4 border-t border-gray-100 dark:border-slate-800 space-y-3 transition-colors duration-300">
           <div className="flex items-center gap-3 px-2">
             <div className="w-10 h-10 rounded-full bg-gray-100 dark:bg-slate-800 text-gray-700 dark:text-gray-300 flex items-center justify-center font-bold border border-gray-200 dark:border-slate-700">
-              {user?.name?.charAt(0)}
+              {user?.name?.[0]}
             </div>
             <div>
               <p className="text-sm font-bold text-gray-900 dark:text-white">{user?.name}</p>
@@ -79,7 +79,7 @@ const AdminLayout = () => {
               className="flex-1 flex items-center justify-center gap-2 bg-gray-100 dark:bg-slate-800 hover:bg-red-50 hover:text-red-600 dark:hover:bg-red-900/30 dark:hover:text-red-400 text-gray-700 dark:text-gray-300 py-2.5 rounded-xl transition-colors text-sm font-bold border border-transparent dark:border-slate-700 hover:border-red-100 dark:hover:border-red-900/50"
             >
               <LogOut className="w-4 h-4" />
-              <span>{'تسجيل الخروج'}</span>
+              <span>تسجيل الخروج</span>
             </button>
           </div>
         </div>

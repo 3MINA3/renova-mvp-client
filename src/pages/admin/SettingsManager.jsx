@@ -44,8 +44,8 @@ const SettingsManager = () => {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-3xl font-extrabold text-gray-900 dark:text-white">{'إعدادات المنصة'}</h1>
-        <p className="text-gray-500 dark:text-gray-400 mt-1">{'إدارة أنواع الخردة وأقسام المنتجات'}</p>
+        <h1 className="text-3xl font-extrabold text-gray-900 dark:text-white">إعدادات المنصة</h1>
+        <p className="text-gray-500 dark:text-gray-400 mt-1">إدارة أنواع الخردة وأقسام المنتجات</p>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -56,7 +56,7 @@ const SettingsManager = () => {
             <div className="bg-orange-100 dark:bg-orange-900/30 p-2 rounded-lg text-orange-600 dark:text-orange-500">
               <Layers className="w-6 h-6" />
             </div>
-            <h2 className="text-xl font-bold text-gray-900 dark:text-white">{'أنواع الخردة'}</h2>
+            <h2 className="text-xl font-bold text-gray-900 dark:text-white">أنواع الخردة</h2>
           </div>
 
           <form onSubmit={handleAddScrapType} className="flex gap-2 mb-6">
@@ -64,7 +64,7 @@ const SettingsManager = () => {
               type="text" 
               value={newScrapType}
               onChange={(e) => setNewScrapType(e.target.value)}
-              placeholder={'إضافة نوع خردة جديد...'}
+              placeholder="إضافة نوع خردة جديد..."
               className="flex-grow px-4 py-2.5 rounded-xl border border-gray-200 dark:border-slate-700 dark:bg-slate-800 dark:text-white focus:border-orange-500 focus:ring-2 focus:ring-orange-200 outline-none transition-all"
             />
             <button 
@@ -77,7 +77,7 @@ const SettingsManager = () => {
 
           <div className="space-y-2 max-h-[400px] overflow-y-auto pr-2">
             {scrapTypes.map((type, idx) => (
-              <div key={idx} className="flex justify-between items-center bg-gray-50 dark:bg-slate-800 p-3 rounded-xl border border-gray-100 dark:border-slate-700">
+              <div key={type} className="flex justify-between items-center bg-gray-50 dark:bg-slate-800 p-3 rounded-xl border border-gray-100 dark:border-slate-700">
                 <span className="font-bold text-gray-700 dark:text-gray-300">{type}</span>
                 <button 
                   onClick={() => handleRemoveScrapType(type)}
@@ -88,7 +88,7 @@ const SettingsManager = () => {
               </div>
             ))}
             {scrapTypes.length === 0 && (
-              <p className="text-center text-gray-400 dark:text-gray-500 py-4">{'لا توجد أنواع خردة متاحة حالياً'}</p>
+              <p className="text-center text-gray-400 dark:text-gray-500 py-4">لا توجد أنواع خردة متاحة حالياً</p>
             )}
           </div>
         </div>
@@ -99,7 +99,7 @@ const SettingsManager = () => {
             <div className="bg-green-100 dark:bg-green-900/30 p-2 rounded-lg text-green-600 dark:text-green-500">
               <Tag className="w-6 h-6" />
             </div>
-            <h2 className="text-xl font-bold text-gray-900 dark:text-white">{'أقسام المنتجات'}</h2>
+            <h2 className="text-xl font-bold text-gray-900 dark:text-white">أقسام المنتجات</h2>
           </div>
 
           <form onSubmit={handleAddCategory} className="flex gap-2 mb-6">
@@ -107,7 +107,7 @@ const SettingsManager = () => {
               type="text" 
               value={newCategory}
               onChange={(e) => setNewCategory(e.target.value)}
-              placeholder={'إضافة قسم جديد...'}
+              placeholder="إضافة قسم جديد..."
               className="flex-grow px-4 py-2.5 rounded-xl border border-gray-200 dark:border-slate-700 dark:bg-slate-800 dark:text-white focus:border-green-500 focus:ring-2 focus:ring-green-200 outline-none transition-all"
             />
             <button 
@@ -120,7 +120,7 @@ const SettingsManager = () => {
 
           <div className="space-y-2 max-h-[400px] overflow-y-auto pr-2">
             {productCategories.map((cat, idx) => (
-              <div key={idx} className="flex justify-between items-center bg-gray-50 dark:bg-slate-800 p-3 rounded-xl border border-gray-100 dark:border-slate-700">
+              <div key={cat} className="flex justify-between items-center bg-gray-50 dark:bg-slate-800 p-3 rounded-xl border border-gray-100 dark:border-slate-700">
                 <span className="font-bold text-gray-700 dark:text-gray-300">{cat}</span>
                 <button 
                   onClick={() => handleRemoveCategory(cat)}
@@ -131,7 +131,7 @@ const SettingsManager = () => {
               </div>
             ))}
             {productCategories.length === 0 && (
-              <p className="text-center text-gray-400 dark:text-gray-500 py-4">{'لا توجد أقسام متاحة'}</p>
+              <p className="text-center text-gray-400 dark:text-gray-500 py-4">لا توجد أقسام متاحة</p>
             )}
           </div>
         </div>

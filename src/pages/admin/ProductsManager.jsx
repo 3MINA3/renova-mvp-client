@@ -128,8 +128,8 @@ const ProductsManager = () => {
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
-          <h1 className="text-3xl font-extrabold text-gray-900 dark:text-white">{'إدارة المنتجات'}</h1>
-          <p className="text-gray-500 dark:text-gray-400 mt-1">{'إدارة منتجات المتجر، إضافة منتجات جديدة أو تعديل الحالية'}</p>
+          <h1 className="text-3xl font-extrabold text-gray-900 dark:text-white">إدارة المنتجات</h1>
+          <p className="text-gray-500 dark:text-gray-400 mt-1">إدارة منتجات المتجر، إضافة منتجات جديدة أو تعديل الحالية</p>
         </div>
         {!isEditing && (
           <button 
@@ -137,7 +137,7 @@ const ProductsManager = () => {
             className="flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white px-5 py-2.5 rounded-xl font-bold transition-colors shadow-sm"
           >
             <Plus className="w-5 h-5" />
-            <span>{'إضافة منتج'}</span>
+            <span>إضافة منتج</span>
           </button>
         )}
       </div>
@@ -156,8 +156,9 @@ const ProductsManager = () => {
           <form onSubmit={handleSubmit} className="space-y-5">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
               <div>
-                <label className="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-2">{'اسم المنتج'}</label>
+                <label htmlFor="name" className="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-2">اسم المنتج</label>
                 <input 
+                  id="name"
                   type="text" 
                   value={formData.name}
                   onChange={(e) => setFormData({...formData, name: e.target.value})}
@@ -166,23 +167,25 @@ const ProductsManager = () => {
               </div>
               
               <div>
-                <label className="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-2">{'القسم'}</label>
+                <label htmlFor="category" className="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-2">القسم</label>
                 <select 
+                  id="category"
                   value={formData.category}
                   onChange={(e) => setFormData({...formData, category: e.target.value})}
                   className="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-slate-700 dark:bg-slate-800 dark:text-white focus:border-green-500 focus:ring-2 focus:ring-green-200 outline-none transition-all"
                 >
-                  <option value="">-- {'القسم'} --</option>
+                  <option value="">-- القسم --</option>
                   {productCategories.map(cat => (
                     <option key={cat} value={cat}>{cat}</option>
                   ))}
-                  {productCategories.length === 0 && <option value="" disabled>{'لا توجد أقسام متاحة'}</option>}
+                  {productCategories.length === 0 && <option value="" disabled>لا توجد أقسام متاحة</option>}
                 </select>
               </div>
 
               <div>
-                <label className="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-2">{'السعر'} ({'ج.م'})</label>
+                <label htmlFor="price" className="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-2">السعر (ج.م)</label>
                 <input 
+                  id="price"
                   type="number" 
                   value={formData.price}
                   onChange={(e) => setFormData({...formData, price: e.target.value})}
@@ -191,7 +194,7 @@ const ProductsManager = () => {
               </div>
 
               <div>
-                <label className="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-3">{'صورة المنتج'}</label>
+                <label htmlFor="image" className="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-3">صورة المنتج</label>
                 
                 {/* Tabs for Image Input Type */}
                 <div className="flex gap-2 mb-4 bg-gray-50 dark:bg-slate-800 p-1.5 rounded-xl border border-gray-100 dark:border-slate-700">
@@ -200,20 +203,21 @@ const ProductsManager = () => {
                     onClick={() => setImageMode('file')}
                     className={`flex-1 py-2 text-sm font-bold rounded-lg transition-colors ${imageMode === 'file' ? 'bg-white dark:bg-slate-700 shadow-sm text-green-700 dark:text-green-400' : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300'}`}
                   >
-                    {'رفع من الجهاز'}
+                    رفع من الجهاز
                   </button>
                   <button
                     type="button"
                     onClick={() => setImageMode('url')}
                     className={`flex-1 py-2 text-sm font-bold rounded-lg transition-colors ${imageMode === 'url' ? 'bg-white dark:bg-slate-700 shadow-sm text-green-700 dark:text-green-400' : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300'}`}
                   >
-                    {'رابط (URL)'}
+                    رابط (URL)
                   </button>
                 </div>
 
                 <div className="flex flex-col gap-4">
                   {imageMode === 'url' ? (
                     <input 
+                      id="image"
                       type="url" 
                       value={formData.image && !formData.image.startsWith('data:') ? formData.image : ''}
                       onChange={(e) => {
@@ -227,6 +231,7 @@ const ProductsManager = () => {
                   ) : (
                     <div className="flex flex-col gap-2">
                       <input 
+                        id="image"
                         type="file" 
                         accept="image/*"
                         onChange={handleImageUpload}
@@ -234,8 +239,8 @@ const ProductsManager = () => {
                       />
                       {imageInfo && (
                         <div className="text-xs text-gray-500 dark:text-gray-400 flex justify-between bg-gray-50 dark:bg-slate-800 p-2 rounded-lg border border-gray-100 dark:border-slate-700">
-                          <span>{'حجم الصورة الأصلي:'} <span className="font-bold text-gray-700 dark:text-gray-300">{imageInfo.originalSize}</span></span>
-                          <span>{'الأبعاد:'} <span className="font-bold text-gray-700 dark:text-gray-300">{imageInfo.dimensions}</span></span>
+                          <span>حجم الصورة الأصلي: <span className="font-bold text-gray-700 dark:text-gray-300">{imageInfo.originalSize}</span></span>
+                          <span>الأبعاد: <span className="font-bold text-gray-700 dark:text-gray-300">{imageInfo.dimensions}</span></span>
                         </div>
                       )}
                     </div>
@@ -255,8 +260,9 @@ const ProductsManager = () => {
             </div>
 
             <div>
-              <label className="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-2">{'الوصف'}</label>
+              <label htmlFor="description" className="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-2">الوصف</label>
               <textarea 
+                id="description"
                 value={formData.description}
                 onChange={(e) => setFormData({...formData, description: e.target.value})}
                 className="w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-slate-700 dark:bg-slate-800 dark:text-white focus:border-green-500 focus:ring-2 focus:ring-green-200 outline-none transition-all resize-none"
@@ -270,14 +276,14 @@ const ProductsManager = () => {
                 onClick={resetForm}
                 className="px-6 py-2.5 rounded-xl font-bold text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-slate-800 transition-colors"
               >
-                {'إلغاء'}
+                إلغاء
               </button>
               <button 
                 type="submit"
                 className="flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white px-6 py-2.5 rounded-xl font-bold transition-colors shadow-sm transform active:scale-95"
               >
                 <Save className="w-5 h-5" />
-                <span>{'حفظ التغييرات'}</span>
+                <span>حفظ التغييرات</span>
               </button>
             </div>
           </form>
@@ -291,18 +297,18 @@ const ProductsManager = () => {
               <div className="bg-gray-50 dark:bg-slate-800 p-6 rounded-full mb-4">
                 <Package className="w-12 h-12 text-gray-300 dark:text-gray-600" />
               </div>
-              <h3 className="text-xl font-bold text-gray-800 dark:text-white mb-2">{'لا يوجد منتجات متاحة'}</h3>
-              <p className="text-gray-500 dark:text-gray-400">{'أضف المنتج الأول للمتجر الآن'}</p>
+              <h3 className="text-xl font-bold text-gray-800 dark:text-white mb-2">لا يوجد منتجات متاحة</h3>
+              <p className="text-gray-500 dark:text-gray-400">أضف المنتج الأول للمتجر الآن</p>
             </div>
           ) : (
             <div className="overflow-x-auto">
               <table className="w-full text-sm text-start" dir="rtl">
                 <thead className="text-xs text-gray-700 dark:text-gray-300 uppercase bg-gray-50 dark:bg-slate-800 border-b border-gray-100 dark:border-slate-700">
                   <tr>
-                    <th className="px-6 py-4 font-bold">{'اسم المنتج'}</th>
-                    <th className="px-6 py-4 font-bold">{'القسم'}</th>
-                    <th className="px-6 py-4 font-bold">{'السعر'}</th>
-                    <th className="px-6 py-4 font-bold text-end">{'الإجراءات'}</th>
+                    <th className="px-6 py-4 font-bold">اسم المنتج</th>
+                    <th className="px-6 py-4 font-bold">القسم</th>
+                    <th className="px-6 py-4 font-bold">السعر</th>
+                    <th className="px-6 py-4 font-bold text-end">الإجراءات</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -316,7 +322,7 @@ const ProductsManager = () => {
                       </td>
                       <td className="px-6 py-4 text-gray-600 dark:text-gray-400">{product.category}</td>
                       <td className="px-6 py-4">
-                        <span className="font-bold text-green-600">{product.price} {'ج.م'}</span>
+                        <span className="font-bold text-green-600">{product.price} ج.م</span>
                       </td>
                       <td className="px-6 py-4">
                         <div className="flex items-center gap-2 justify-end">

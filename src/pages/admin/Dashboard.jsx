@@ -91,15 +91,15 @@ const Dashboard = () => {
     <div className="space-y-8 animate-in fade-in duration-500 pb-10">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
-          <h1 className="text-3xl font-extrabold text-gray-900 dark:text-white">{'الرئيسية والإحصائيات'}</h1>
-          <p className="text-gray-500 dark:text-gray-400 mt-2">{'نظرة عامة على نشاط المنصة وحالة الطلبات.'}</p>
+          <h1 className="text-3xl font-extrabold text-gray-900 dark:text-white">الرئيسية والإحصائيات</h1>
+          <p className="text-gray-500 dark:text-gray-400 mt-2">نظرة عامة على نشاط المنصة وحالة الطلبات.</p>
         </div>
       </div>
       
       {/* Overview Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {overviewStats.map((stat, index) => (
-          <div key={index} className="bg-white dark:bg-slate-900 p-6 rounded-3xl shadow-sm border border-gray-100 dark:border-slate-800 hover:shadow-md transition-shadow flex items-center gap-5">
+          <div key={stat.title || index} className="bg-white dark:bg-slate-900 p-6 rounded-3xl shadow-sm border border-gray-100 dark:border-slate-800 hover:shadow-md transition-shadow flex items-center gap-5">
             <div className={`w-16 h-16 rounded-2xl flex flex-shrink-0 items-center justify-center ${stat.bg}`}>
               {stat.icon}
             </div>
@@ -136,7 +136,7 @@ const Dashboard = () => {
           
           <div className="space-y-2 mt-6">
             {orderStats.map((item, idx) => (
-              <StatProgress key={idx} item={item} total={orders.length} />
+              <StatProgress key={item.label || idx} item={item} total={orders.length} />
             ))}
           </div>
         </div>
@@ -161,7 +161,7 @@ const Dashboard = () => {
           
           <div className="space-y-2 mt-6">
             {requestStats.map((item, idx) => (
-              <StatProgress key={idx} item={item} total={requests.length} />
+              <StatProgress key={item.label || idx} item={item} total={requests.length} />
             ))}
           </div>
         </div>

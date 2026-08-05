@@ -36,8 +36,9 @@ const AdminLogin = () => {
 
         <form onSubmit={handleSubmit} className="space-y-5">
           <div>
-            <label className="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-1">البريد الإلكتروني للإدارة</label>
+            <label htmlFor="email" className="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-1">البريد الإلكتروني للإدارة</label>
             <input 
+              id="email"
               type="email" 
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -47,8 +48,9 @@ const AdminLogin = () => {
           </div>
           
           <div>
-            <label className="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-1">كلمة المرور</label>
+            <label htmlFor="password" className="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-1">كلمة المرور</label>
             <input 
+              id="password"
               type="password" 
               value={password}
               onChange={(e) => setPassword(e.target.value)}

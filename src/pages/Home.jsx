@@ -38,7 +38,7 @@ const Home = () => {
       {/* Product Grid */}
       {filteredProducts.length === 0 ? (
         <div className="text-center py-20 text-gray-500 dark:text-gray-400">
-          <p className="text-xl font-bold">{'لا توجد منتجات حالياً'}</p>
+          <p className="text-xl font-bold">لا توجد منتجات حالياً</p>
         </div>
       ) : (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 xl:gap-8">

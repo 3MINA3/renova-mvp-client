@@ -28,7 +28,9 @@ export const AuthProvider = ({ children }) => {
       usersList = [defaultUser];
       try {
         localStorage.setItem('registeredUsers', JSON.stringify(usersList));
-      } catch (err) {}
+      } catch (err) {
+        console.error("Failed to save default user to local storage", err);
+      }
     }
     setRegisteredUsers(usersList);
 

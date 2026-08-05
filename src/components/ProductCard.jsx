@@ -48,9 +48,9 @@ const ProductCard = ({ product }) => {
         
         <div className="mt-auto flex items-center justify-between">
           <div className="flex flex-col">
-            <span className="text-xs text-gray-400 dark:text-gray-500 font-medium mb-1 uppercase tracking-wider">{'السعر'}</span>
+            <span className="text-xs text-gray-400 dark:text-gray-500 font-medium mb-1 uppercase tracking-wider">السعر</span>
             <span className="text-2xl font-black text-gradient-premium">
-              {product.price} <span className="text-sm font-bold text-teal-600 dark:text-teal-400">{'ج.م'}</span>
+              {product.price} <span className="text-sm font-bold text-teal-600 dark:text-teal-400">ج.م</span>
             </span>
           </div>
           <button 
@@ -58,7 +58,7 @@ const ProductCard = ({ product }) => {
             className="flex items-center gap-2 bg-gray-900 hover:bg-black dark:bg-white dark:hover:bg-gray-200 dark:text-gray-900 text-white px-5 py-3 rounded-2xl transition-all shadow-md hover:shadow-xl transform active:scale-95 group/btn"
           >
             <ShoppingCart className="w-5 h-5 group-hover/btn:rotate-12 transition-transform" />
-            <span className="text-sm font-bold">{'أضف للسلة'}</span>
+            <span className="text-sm font-bold">أضف للسلة</span>
           </button>
         </div>
       </div>

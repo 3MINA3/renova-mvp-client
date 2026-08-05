@@ -42,7 +42,7 @@ const UserForm = () => {
       }
     });
 
-    console.log('تم إنشاء المستخدم:', newUser);
+
     setCreatedUser(newUser);
     toast.success('تم إنشاء المستخدم بنجاح! تم حساب العمر: ' + newUser.age);
     
@@ -68,11 +68,12 @@ const UserForm = () => {
         {/* Personal Info */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           <div>
-            <label className="flex items-center gap-2 text-sm font-bold text-gray-700 dark:text-gray-300 mb-2">
+            <label htmlFor="name" className="flex items-center gap-2 text-sm font-bold text-gray-700 dark:text-gray-300 mb-2">
               <UserIcon className="w-4 h-4 text-gray-400" />
               الاسم الكامل
             </label>
             <input 
+              id="name"
               type="text" 
               value={formData.name}
               onChange={(e) => setFormData({...formData, name: e.target.value})}
@@ -82,11 +83,12 @@ const UserForm = () => {
           </div>
           
           <div>
-            <label className="flex items-center gap-2 text-sm font-bold text-gray-700 dark:text-gray-300 mb-2">
+            <label htmlFor="email" className="flex items-center gap-2 text-sm font-bold text-gray-700 dark:text-gray-300 mb-2">
               <Mail className="w-4 h-4 text-gray-400" />
               البريد الإلكتروني
             </label>
             <input 
+              id="email"
               type="email" 
               value={formData.email}
               onChange={(e) => setFormData({...formData, email: e.target.value})}
@@ -97,11 +99,12 @@ const UserForm = () => {
           </div>
 
           <div>
-            <label className="flex items-center gap-2 text-sm font-bold text-gray-700 dark:text-gray-300 mb-2">
+            <label htmlFor="phone" className="flex items-center gap-2 text-sm font-bold text-gray-700 dark:text-gray-300 mb-2">
               <Phone className="w-4 h-4 text-gray-400" />
               رقم الهاتف (يمكن إضافة أكثر من رقم مفصول بفاصلة)
             </label>
             <input 
+              id="phone"
               type="text" 
               value={formData.phone}
               onChange={(e) => setFormData({...formData, phone: e.target.value})}
@@ -112,11 +115,12 @@ const UserForm = () => {
           </div>
 
           <div>
-            <label className="flex items-center gap-2 text-sm font-bold text-gray-700 dark:text-gray-300 mb-2">
+            <label htmlFor="dateOfBirth" className="flex items-center gap-2 text-sm font-bold text-gray-700 dark:text-gray-300 mb-2">
               <Calendar className="w-4 h-4 text-gray-400" />
               تاريخ الميلاد
             </label>
             <input 
+              id="dateOfBirth"
               type="date" 
               value={formData.dateOfBirth}
               onChange={(e) => setFormData({...formData, dateOfBirth: e.target.value})}
@@ -132,8 +136,9 @@ const UserForm = () => {
           </h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             <div>
-              <label className="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-2">المدينة</label>
+              <label htmlFor="city" className="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-2">المدينة</label>
               <input 
+                id="city"
                 type="text" 
                 value={formData.city}
                 onChange={(e) => setFormData({...formData, city: e.target.value})}
@@ -142,8 +147,9 @@ const UserForm = () => {
               />
             </div>
             <div>
-              <label className="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-2">الشارع</label>
+              <label htmlFor="street" className="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-2">الشارع</label>
               <input 
+                id="street"
                 type="text" 
                 value={formData.street}
                 onChange={(e) => setFormData({...formData, street: e.target.value})}

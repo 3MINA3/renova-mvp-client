@@ -76,14 +76,15 @@ const Register = () => {
           <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-tr from-green-500 to-teal-500 text-white mb-4 shadow-lg">
             <UserPlus className="w-8 h-8" />
           </div>
-          <h2 className="text-3xl font-extrabold text-gray-900 dark:text-white">{'إنشاء حساب جديد'}</h2>
-          <p className="text-gray-500 dark:text-gray-400 mt-2">{'انضم إلينا وابدأ في حماية البيئة'}</p>
+          <h2 className="text-3xl font-extrabold text-gray-900 dark:text-white">إنشاء حساب جديد</h2>
+          <p className="text-gray-500 dark:text-gray-400 mt-2">انضم إلينا وابدأ في حماية البيئة</p>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-5">
           <div>
-            <label className="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-2">{'الاسم الكامل'} *</label>
+            <label htmlFor="name" className="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-2">الاسم الكامل *</label>
             <input 
+              id="name"
               type="text" 
               required
               value={name}
@@ -93,8 +94,9 @@ const Register = () => {
           </div>
 
           <div>
-            <label className="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-2">{'البريد الإلكتروني'} *</label>
+            <label htmlFor="email" className="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-2">البريد الإلكتروني *</label>
             <input 
+              id="email"
               type="email" 
               required
               value={email}
@@ -105,10 +107,11 @@ const Register = () => {
           </div>
 
           <div>
-            <label className="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-2">{'رقم الهاتف'} *</label>
+            <label htmlFor="phone" className="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-2">رقم الهاتف *</label>
             <div className="relative">
               <Phone className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
               <input 
+                id="phone"
                 type="tel" 
                 required
                 value={phone}
@@ -120,10 +123,11 @@ const Register = () => {
           </div>
 
           <div>
-            <label className="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-2">{'تاريخ الميلاد'} *</label>
+            <label htmlFor="dateOfBirth" className="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-2">تاريخ الميلاد *</label>
             <div className="relative">
               <Calendar className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
               <input 
+                id="dateOfBirth"
                 type="date" 
                 required
                 value={dateOfBirth}
@@ -135,8 +139,9 @@ const Register = () => {
 
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-2">{'المدينة'} *</label>
+              <label htmlFor="city" className="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-2">المدينة *</label>
               <input 
+                id="city"
                 type="text" 
                 required
                 value={city}
@@ -145,8 +150,9 @@ const Register = () => {
               />
             </div>
             <div>
-              <label className="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-2">{'الشارع'} *</label>
+              <label htmlFor="street" className="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-2">الشارع *</label>
               <input 
+                id="street"
                 type="text" 
                 required
                 value={street}
@@ -157,8 +163,9 @@ const Register = () => {
           </div>
           
           <div>
-            <label className="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-2">{'كلمة المرور'} *</label>
+            <label htmlFor="password" className="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-2">كلمة المرور *</label>
             <input 
+              id="password"
               type="password" 
               required
               value={password}
@@ -169,8 +176,9 @@ const Register = () => {
           </div>
 
           <div>
-            <label className="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-2">{'تأكيد كلمة المرور'} *</label>
+            <label htmlFor="confirmPassword" className="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-2">تأكيد كلمة المرور *</label>
             <input 
+              id="confirmPassword"
               type="password" 
               required
               value={confirmPassword}
@@ -184,18 +192,18 @@ const Register = () => {
             type="submit" 
             className="w-full bg-gradient-to-r from-gray-900 to-black hover:from-black hover:to-gray-900 text-white font-bold py-3.5 rounded-xl transition-all shadow-md transform active:scale-95 flex items-center justify-center gap-2 mt-4"
           >
-            <span>{'إنشاء حساب'}</span>
+            <span>إنشاء حساب</span>
           </button>
         </form>
 
         <div className="mt-8 text-center border-t border-gray-100 dark:border-slate-800 pt-6">
-          <p className="text-gray-500 dark:text-gray-400 mb-3">{'لديك حساب بالفعل؟'}</p>
+          <p className="text-gray-500 dark:text-gray-400 mb-3">لديك حساب بالفعل؟</p>
           <Link 
             to="/login" 
             className="inline-flex items-center justify-center gap-2 text-teal-600 hover:text-teal-700 font-bold transition-colors"
           >
             <LogIn className="w-4 h-4" />
-            <span>{'تسجيل الدخول'}</span>
+            <span>تسجيل الدخول</span>
           </Link>
         </div>
       </div>
