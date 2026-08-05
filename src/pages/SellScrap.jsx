@@ -3,9 +3,11 @@ import { useAuth } from '../context/AuthContext';
 import { useRequests } from '../context/RequestsContext';
 import { useSettings } from '../context/SettingsContext';
 import { useNavigate, Link } from 'react-router-dom';
-import { Recycle, AlertCircle, Image as ImageIcon, MapPin } from 'lucide-react';
+import { Recycle, AlertCircle, Image as ImageIcon } from 'lucide-react';
 import { toast } from 'sonner';
 import { SellOrder } from '../models';
+import AddressSelector from '../components/AddressSelector';
+import { compressImage } from '../utils/imageUtils';
 
 const SellScrap = () => {
   const { isAuthenticated, user, updateUser } = useAuth();
@@ -27,52 +29,16 @@ const SellScrap = () => {
   const [imageMode, setImageMode] = useState('file');
   const [imageInfo, setImageInfo] = useState(null);
 
-  const handleImageUpload = (e) => {
+  const handleImageUpload = async (e) => {
     const file = e.target.files[0];
     if (file) {
-      const originalSizeMB = (file.size / (1024 * 1024)).toFixed(2);
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        const img = new Image();
-        img.onload = () => {
-          setImageInfo({
-            originalSize: originalSizeMB + ' MB',
-            dimensions: `${img.width}x${img.height}`
-          });
-          
-          const canvas = document.createElement('canvas');
-          let width = img.width;
-          let height = img.height;
-          
-          const MAX_WIDTH = 800;
-          const MAX_HEIGHT = 800;
-          
-          if (width > height) {
-            if (width > MAX_WIDTH) {
-              height *= MAX_WIDTH / width;
-              width = MAX_WIDTH;
-            }
-          } else {
-            if (height > MAX_HEIGHT) {
-              width *= MAX_HEIGHT / height;
-              height = MAX_HEIGHT;
-            }
-          }
-          
-          canvas.width = width;
-          canvas.height = height;
-          const ctx = canvas.getContext('2d');
-          ctx.drawImage(img, 0, 0, width, height);
-          
-          const compressedDataUrl = canvas.toDataURL('image/jpeg', 0.7);
-          setFormData(prev => ({ ...prev, image: compressedDataUrl }));
-        };
-        img.onerror = () => {
-          alert('حدث خطأ أثناء قراءة الصورة. يرجى تجربة صورة أخرى.');
-        };
-        img.src = reader.result;
-      };
-      reader.readAsDataURL(file);
+      try {
+        const { compressedDataUrl, imageInfo } = await compressImage(file);
+        setImageInfo(imageInfo);
+        setFormData(prev => ({ ...prev, image: compressedDataUrl }));
+      } catch (error) {
+        alert(error.message);
+      }
     }
   };
 
@@ -227,95 +193,15 @@ const SellScrap = () => {
 
           <div className="space-y-4">
             <h3 className="font-bold text-gray-800 dark:text-white border-b border-gray-100 dark:border-slate-800 pb-2 mb-4">{'مكان استلام الخردة'}</h3>
-            <div className="max-h-64 overflow-y-auto pr-2 space-y-3 custom-scrollbar">
-              {(user?.address?.city || (user?.address && typeof user.address === 'string')) && (
-                <label className="flex items-start gap-3 p-4 border border-gray-200 dark:border-slate-700 rounded-xl cursor-pointer hover:bg-gray-50 dark:hover:bg-slate-800 transition-colors">
-                  <input 
-                    type="radio" 
-                    name="addressMode" 
-                    value="registered" 
-                    checked={addressMode === 'registered'} 
-                    onChange={() => setAddressMode('registered')}
-                    className="mt-1 w-4 h-4 text-green-600 focus:ring-green-500 flex-shrink-0"
-                  />
-                  <div>
-                    <span className="block font-bold text-gray-800 dark:text-white mb-1">{'العنوان الأساسي'}</span>
-                    <span className="text-sm text-gray-500 dark:text-gray-400">
-                      {user?.address?.city && user?.address?.street 
-                        ? `${user.address.city}، ${user.address.street}` 
-                        : user.address}
-                    </span>
-                  </div>
-                </label>
-              )}
-
-              {user?.deliveryAddresses?.map((addr, idx) => (
-                <label key={idx} className="flex items-start gap-3 p-4 border border-gray-200 dark:border-slate-700 rounded-xl cursor-pointer hover:bg-gray-50 dark:hover:bg-slate-800 transition-colors">
-                  <input 
-                    type="radio" 
-                    name="addressMode" 
-                    value={`delivery_${idx}`} 
-                    checked={addressMode === `delivery_${idx}`} 
-                    onChange={() => setAddressMode(`delivery_${idx}`)}
-                    className="mt-1 w-4 h-4 text-green-600 focus:ring-green-500 flex-shrink-0"
-                  />
-                  <div>
-                    <span className="block font-bold text-gray-800 dark:text-white mb-1">{'عنوان محفوظ ' + (idx + 1)}</span>
-                    <span className="text-sm text-gray-500 dark:text-gray-400">
-                      {`${addr.city}، ${addr.street}`}
-                    </span>
-                  </div>
-                </label>
-              ))}
-
-              <label className="flex items-start gap-3 p-4 border border-gray-200 dark:border-slate-700 rounded-xl cursor-pointer hover:bg-gray-50 dark:hover:bg-slate-800 transition-colors">
-                <input 
-                  type="radio" 
-                  name="addressMode" 
-                  value="new" 
-                  checked={addressMode === 'new'} 
-                  onChange={() => setAddressMode('new')}
-                  className="mt-1 w-4 h-4 text-green-600 focus:ring-green-500 flex-shrink-0"
-                />
-                <div>
-                  <span className="block font-bold text-gray-800 dark:text-white mb-1">{'إضافة عنوان جديد'}</span>
-                  <span className="text-sm text-gray-500 dark:text-gray-400">{'سيتم حفظ هذا العنوان في قائمة عناوينك'}</span>
-                </div>
-              </label>
-            </div>
-
-            {addressMode === 'new' && (
-              <div className="p-4 bg-gray-50 dark:bg-slate-800 rounded-xl space-y-3 animate-in fade-in zoom-in-95 duration-200">
-                <div>
-                  <label className="block text-xs font-bold text-gray-700 dark:text-gray-300 mb-1">{'المدينة'} *</label>
-                  <div className="relative">
-                    <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
-                    <input 
-                      type="text" 
-                      required
-                      value={newCity}
-                      onChange={(e) => setNewCity(e.target.value)}
-                      className="w-full pl-9 pr-3 py-2 text-sm border border-gray-200 dark:border-slate-700 dark:bg-slate-900 dark:text-white rounded-lg focus:ring-2 focus:ring-green-500 outline-none"
-                      placeholder={'أدخل المدينة'}
-                    />
-                  </div>
-                </div>
-                <div>
-                  <label className="block text-xs font-bold text-gray-700 dark:text-gray-300 mb-1">{'الشارع'} *</label>
-                  <div className="relative">
-                    <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
-                    <input 
-                      type="text" 
-                      required
-                      value={newStreet}
-                      onChange={(e) => setNewStreet(e.target.value)}
-                      className="w-full pl-9 pr-3 py-2 text-sm border border-gray-200 dark:border-slate-700 dark:bg-slate-900 dark:text-white rounded-lg focus:ring-2 focus:ring-green-500 outline-none"
-                      placeholder={'اسم الشارع أو رقم العمارة'}
-                    />
-                  </div>
-                </div>
-              </div>
-            )}
+            <AddressSelector 
+              user={user}
+              addressMode={addressMode}
+              setAddressMode={setAddressMode}
+              newCity={newCity}
+              setNewCity={setNewCity}
+              newStreet={newStreet}
+              setNewStreet={setNewStreet}
+            />
           </div>
 
           <div>
