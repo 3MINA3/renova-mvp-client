@@ -58,7 +58,7 @@ const HeroSection = () => {
               className="relative z-10 w-64 h-64 lg:w-80 lg:h-80 bg-white rounded-[2rem] shadow-2xl flex items-center justify-center p-6 border-4 border-white/50 overflow-hidden cursor-pointer"
             >
                <img 
-                 src="/logo.png" 
+                 src={`${import.meta.env.BASE_URL}logo.png`} 
                  alt="Renova Hero Logo" 
                  className="w-full h-full object-contain transform group-hover:scale-110 transition-transform duration-700" 
                />

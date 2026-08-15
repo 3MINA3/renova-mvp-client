@@ -30,7 +30,7 @@ const Navbar = () => {
             {/* Inner Logo Container */}
             <div className="relative bg-white dark:bg-slate-900 rounded-xl overflow-hidden p-1 z-10">
               <img 
-                src="/logo.png" 
+                src={`${import.meta.env.BASE_URL}logo.png`} 
                 alt="Renova Logo" 
                 className="h-10 md:h-14 w-auto object-contain rounded-xl" 
               />
