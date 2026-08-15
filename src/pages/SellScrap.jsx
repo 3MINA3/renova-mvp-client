@@ -8,6 +8,9 @@ import { toast } from 'sonner';
 import { SellOrder } from '../models';
 import AddressSelector from '../components/AddressSelector';
 import { compressImage } from '../utils/imageUtils';
+import { motion } from 'framer-motion';
+
+const springConf = { type: "spring", bounce: 0, duration: 0.4 };
 
 const SellScrap = () => {
   const { isAuthenticated, user, updateUser } = useAuth();
@@ -109,7 +112,12 @@ const SellScrap = () => {
 
   if (!isAuthenticated) {
     return (
-      <div className="max-w-md mx-auto py-20 text-center">
+      <motion.div 
+        initial={{ opacity: 0, scale: 0.95 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={springConf}
+        className="max-w-md mx-auto py-20 text-center"
+      >
         <div className="bg-orange-100 dark:bg-orange-900/30 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 text-orange-500 shadow-sm">
           <AlertCircle className="w-10 h-10" />
         </div>
@@ -131,13 +139,18 @@ const SellScrap = () => {
             إنشاء حساب
           </Link>
         </div>
-      </div>
+      </motion.div>
     );
   }
 
   return (
-    <div className="max-w-2xl mx-auto py-12">
-      <div className="bg-white dark:bg-slate-900 p-8 md:p-10 rounded-3xl shadow-xl border border-gray-100 dark:border-slate-800">
+    <motion.div 
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={springConf}
+      className="max-w-2xl mx-auto py-12"
+    >
+      <div className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-2xl saturate-150 p-8 md:p-10 rounded-3xl shadow-xl border border-gray-100/50 dark:border-slate-800/80">
         <div className="text-center mb-10">
           <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-tr from-green-500 to-teal-500 text-white mb-4 shadow-lg">
             <Recycle className="w-8 h-8" />
@@ -211,20 +224,24 @@ const SellScrap = () => {
             <label htmlFor="image" className="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-3">صورة الخردة (اختياري)</label>
             
             <div className="flex gap-2 mb-4 bg-gray-50 dark:bg-slate-800 p-1.5 rounded-xl border border-gray-100 dark:border-slate-700">
-              <button
+              <motion.button
+                whileTap={{ scale: 0.95 }}
+                transition={springConf}
                 type="button"
                 onClick={() => setImageMode('file')}
                 className={`flex-1 py-2 text-sm font-bold rounded-lg transition-colors ${imageMode === 'file' ? 'bg-white dark:bg-slate-700 shadow-sm text-green-700 dark:text-green-400' : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300'}`}
               >
                 رفع من الجهاز
-              </button>
-              <button
+              </motion.button>
+              <motion.button
+                whileTap={{ scale: 0.95 }}
+                transition={springConf}
                 type="button"
                 onClick={() => setImageMode('url')}
                 className={`flex-1 py-2 text-sm font-bold rounded-lg transition-colors ${imageMode === 'url' ? 'bg-white dark:bg-slate-700 shadow-sm text-green-700 dark:text-green-400' : 'text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-300'}`}
               >
                 رابط (URL)
-              </button>
+              </motion.button>
             </div>
 
             <div className="flex flex-col gap-4">
@@ -277,16 +294,18 @@ const SellScrap = () => {
 
 
 
-          <button 
+          <motion.button 
+            whileTap={{ scale: 0.95 }}
+            transition={springConf}
             type="submit" 
-            className="w-full bg-gradient-to-r from-green-600 to-teal-500 hover:from-green-700 hover:to-teal-600 text-white font-bold py-4 rounded-xl transition-all shadow-md hover:shadow-lg transform active:scale-95 text-lg mt-6 flex items-center justify-center gap-2"
+            className="w-full bg-gradient-to-r from-green-600 to-teal-500 hover:from-green-700 hover:to-teal-600 text-white font-bold py-4 rounded-xl transition-colors shadow-md hover:shadow-lg text-lg mt-6 flex items-center justify-center gap-2"
           >
             <Recycle className="w-5 h-5" />
             <span>إرسال الطلب</span>
-          </button>
+          </motion.button>
         </form>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

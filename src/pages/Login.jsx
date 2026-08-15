@@ -3,6 +3,9 @@ import { useAuth } from '../context/AuthContext';
 import { useNavigate, Link } from 'react-router-dom';
 import { LogIn, UserPlus } from 'lucide-react';
 import { toast } from 'sonner';
+import { motion } from 'framer-motion';
+
+const springConf = { type: "spring", bounce: 0, duration: 0.4 };
 
 const validateEmail = (email) => {
   const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -36,13 +39,14 @@ const Login = () => {
   };
 
   return (
-    <div className="max-w-md mx-auto py-12 animate-in fade-in zoom-in-95 duration-500">
-      <div className="bg-white dark:bg-slate-900 p-8 rounded-3xl shadow-xl border border-gray-100 dark:border-slate-800 relative overflow-hidden">
+    <motion.div 
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={springConf}
+      className="max-w-md mx-auto py-12"
+    >
+      <div className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-2xl saturate-150 p-8 rounded-3xl shadow-xl border border-gray-100/50 dark:border-slate-800/80 relative overflow-hidden">
         
-        {/* Decorative background for premium feel */}
-        <div className="absolute top-0 right-0 -mr-10 -mt-10 w-40 h-40 bg-teal-50 dark:bg-teal-900/20 rounded-full blur-3xl -z-10"></div>
-        <div className="absolute bottom-0 left-0 -ml-10 -mb-10 w-40 h-40 bg-green-50 dark:bg-green-900/20 rounded-full blur-3xl -z-10"></div>
-
         <div className="text-center mb-8">
           <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-tr from-green-500 to-teal-500 text-white mb-4 shadow-lg">
             <LogIn className="w-8 h-8" />
@@ -55,7 +59,7 @@ const Login = () => {
           </p>
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-5 animate-in slide-in-from-right-8 duration-300">
+        <form onSubmit={handleSubmit} className="space-y-5">
           <div>
             <label htmlFor="email" className="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-2">البريد الإلكتروني</label>
             <input 
@@ -88,12 +92,14 @@ const Login = () => {
             />
           </div>
 
-          <button 
+          <motion.button 
+            whileTap={{ scale: 0.95 }}
+            transition={springConf}
             type="submit" 
-            className="w-full bg-gradient-to-r from-gray-900 to-black hover:from-black hover:to-gray-900 text-white font-bold py-3.5 rounded-xl transition-all shadow-md active:scale-95 flex items-center justify-center gap-2 mt-4"
+            className="w-full bg-gradient-to-r from-gray-900 to-black hover:from-black hover:to-gray-900 text-white font-bold py-3.5 rounded-xl transition-colors shadow-md flex items-center justify-center gap-2 mt-4"
           >
             <span>دخول</span>
-          </button>
+          </motion.button>
         </form>
 
         <div className="mt-8 text-center border-t border-gray-100 dark:border-slate-800 pt-6">
@@ -107,7 +113,7 @@ const Login = () => {
           </Link>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

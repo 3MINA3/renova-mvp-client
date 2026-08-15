@@ -4,6 +4,9 @@ import { useNavigate, Link } from 'react-router-dom';
 import { UserPlus, LogIn, Phone, Calendar, MapPin } from 'lucide-react';
 import { toast } from 'sonner';
 import { User, Address } from '../models';
+import { motion } from 'framer-motion';
+
+const springConf = { type: "spring", bounce: 0, duration: 0.4 };
 
 const Register = () => {
   const [name, setName] = useState('');
@@ -70,8 +73,13 @@ const Register = () => {
   };
 
   return (
-    <div className="max-w-md mx-auto py-12">
-      <div className="bg-white dark:bg-slate-900 p-8 rounded-3xl shadow-xl border border-gray-100 dark:border-slate-800">
+    <motion.div 
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={springConf}
+      className="max-w-md mx-auto py-12"
+    >
+      <div className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-2xl saturate-150 p-8 rounded-3xl shadow-xl border border-gray-100/50 dark:border-slate-800/80 relative overflow-hidden">
         <div className="text-center mb-8">
           <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-tr from-green-500 to-teal-500 text-white mb-4 shadow-lg">
             <UserPlus className="w-8 h-8" />
@@ -188,12 +196,14 @@ const Register = () => {
             />
           </div>
 
-          <button 
+          <motion.button 
+            whileTap={{ scale: 0.95 }}
+            transition={springConf}
             type="submit" 
-            className="w-full bg-gradient-to-r from-gray-900 to-black hover:from-black hover:to-gray-900 text-white font-bold py-3.5 rounded-xl transition-all shadow-md transform active:scale-95 flex items-center justify-center gap-2 mt-4"
+            className="w-full bg-gradient-to-r from-gray-900 to-black hover:from-black hover:to-gray-900 text-white font-bold py-3.5 rounded-xl transition-colors shadow-md flex items-center justify-center gap-2 mt-4"
           >
             <span>إنشاء حساب</span>
-          </button>
+          </motion.button>
         </form>
 
         <div className="mt-8 text-center border-t border-gray-100 dark:border-slate-800 pt-6">
@@ -207,7 +217,7 @@ const Register = () => {
           </Link>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

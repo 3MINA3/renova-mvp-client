@@ -15,7 +15,7 @@ import { Toaster } from 'sonner'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <BrowserRouter>
+    <BrowserRouter basename="/renova-mvp-client">
         <AuthProvider>
           <SettingsProvider>
             <ProductProvider>

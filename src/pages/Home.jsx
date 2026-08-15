@@ -3,6 +3,9 @@ import ProductCard from '../components/ProductCard';
 import HeroSection from '../components/HeroSection';
 import { useProducts } from '../context/ProductContext';
 import { useSettings } from '../context/SettingsContext';
+import { motion, AnimatePresence } from 'framer-motion';
+
+const springConf = { type: "spring", bounce: 0, duration: 0.4 };
 
 const Home = () => {
   const [activeCategory, setActiveCategory] = useState('All');
@@ -22,30 +25,50 @@ const Home = () => {
       {/* Category Filter */}
       <div className="flex flex-wrap items-center justify-center gap-3 md:gap-4 py-4">
         {CATEGORIES.map(category => (
-          <button
+          <motion.button
             key={category}
             onClick={() => setActiveCategory(category)}
-            className={`px-6 py-2.5 rounded-full font-bold text-sm transition-all duration-300 shadow-sm ${activeCategory === category
-                ? 'bg-gray-900 text-white dark:bg-green-600 dark:text-white scale-105 shadow-md'
+            whileTap={{ scale: 0.95 }}
+            transition={springConf}
+            className={`px-6 py-2.5 rounded-full font-bold text-sm transition-colors shadow-sm ${activeCategory === category
+                ? 'bg-gray-900 text-white dark:bg-green-600 dark:text-white shadow-md'
                 : 'bg-white text-gray-600 hover:bg-gray-100 border border-gray-100 dark:bg-slate-800 dark:text-gray-300 dark:border-slate-700 dark:hover:bg-slate-700'
               }`}
           >
             {category === 'All' ? 'الكل' : category}
-          </button>
+          </motion.button>
         ))}
       </div>
 
       {/* Product Grid */}
       {filteredProducts.length === 0 ? (
-        <div className="text-center py-20 text-gray-500 dark:text-gray-400">
+        <motion.div 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          className="text-center py-20 text-gray-500 dark:text-gray-400"
+        >
           <p className="text-xl font-bold">لا توجد منتجات حالياً</p>
-        </div>
+        </motion.div>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 xl:gap-8">
-          {filteredProducts.map(product => (
-            <ProductCard key={product.id} product={product} />
-          ))}
-        </div>
+        <motion.div 
+          layout
+          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 xl:gap-8"
+        >
+          <AnimatePresence>
+            {filteredProducts.map((product, index) => (
+              <motion.div
+                layout
+                key={product.id}
+                initial={{ opacity: 0, scale: 0.9, y: 20 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                transition={{ ...springConf, delay: index * 0.05 }}
+              >
+                <ProductCard product={product} />
+              </motion.div>
+            ))}
+          </AnimatePresence>
+        </motion.div>
       )}
 
     </div>

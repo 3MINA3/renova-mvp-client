@@ -1,6 +1,7 @@
 import React from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
 import Navbar from './components/Navbar';
+import LiquidBackground from './components/LiquidBackground';
 import Home from './pages/Home';
 import Cart from './pages/Cart';
 import Favorites from './pages/Favorites';
@@ -25,7 +26,9 @@ function App() {
   const isAdminRoute = location.pathname.startsWith('/admin');
 
   return (
-    <div className={`min-h-screen flex flex-col font-cairo ${isAdminRoute ? '' : 'bg-gray-50 dark:bg-slate-950 transition-colors duration-300'}`} dir="rtl">
+    <div className={`min-h-screen flex flex-col font-cairo ${isAdminRoute ? '' : 'transition-colors duration-300'}`} dir="rtl">
+      {/* Global animated background for non-admin routes */}
+      {!isAdminRoute && <LiquidBackground />}
       {/* Hide Navbar and Footer on Admin Routes */}
       {!isAdminRoute && <Navbar />}
       

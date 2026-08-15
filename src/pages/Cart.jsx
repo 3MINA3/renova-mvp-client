@@ -7,6 +7,9 @@ import { Link } from 'react-router-dom';
 import { toast } from 'sonner';
 import { PurchaseOrder } from '../models';
 import AddressSelector from '../components/AddressSelector';
+import { motion } from 'framer-motion';
+
+const springConf = { type: "spring", bounce: 0, duration: 0.4 };
 
 const Cart = () => {
   const { cart, updateQuantity, removeFromCart, clearCart, cartTotal } = useCart();
@@ -114,7 +117,12 @@ const Cart = () => {
   }
 
   return (
-    <div className="max-w-6xl mx-auto space-y-8 animate-in fade-in duration-500">
+    <motion.div 
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={springConf}
+      className="max-w-6xl mx-auto space-y-8"
+    >
       <div className="flex items-center gap-3 border-b border-gray-100 dark:border-slate-800 pb-4">
         <ShoppingBag className="w-8 h-8 text-teal-600 dark:text-teal-500" />
         <h1 className="text-3xl font-extrabold text-gray-900 dark:text-white">سلة المشتريات</h1>
@@ -139,21 +147,25 @@ const Cart = () => {
               
               {/* Quantity Controls */}
               <div className="flex items-center gap-3 bg-gray-50 dark:bg-slate-800 p-2 rounded-xl border border-gray-100 dark:border-slate-700">
-                <button 
+                <motion.button 
+                  whileTap={{ scale: 0.85 }}
+                  transition={springConf}
                   onClick={() => updateQuantity(item.id, 1)}
-                  className="p-1.5 hover:bg-white dark:hover:bg-slate-700 rounded-lg text-gray-600 dark:text-gray-300 hover:text-green-600 dark:hover:text-green-400 hover:shadow-sm transition-all"
+                  className="p-1.5 hover:bg-white dark:hover:bg-slate-700 rounded-lg text-gray-600 dark:text-gray-300 hover:text-green-600 dark:hover:text-green-400 hover:shadow-sm transition-colors"
                   aria-label="Increase Quantity"
                 >
                   <Plus className="w-4 h-4" />
-                </button>
+                </motion.button>
                 <span className="w-6 text-center font-bold text-gray-800 dark:text-white">{item.quantity}</span>
-                <button 
+                <motion.button 
+                  whileTap={{ scale: 0.85 }}
+                  transition={springConf}
                   onClick={() => updateQuantity(item.id, -1)}
-                  className="p-1.5 hover:bg-white dark:hover:bg-slate-700 rounded-lg text-gray-600 dark:text-gray-300 hover:text-red-500 hover:shadow-sm transition-all"
+                  className="p-1.5 hover:bg-white dark:hover:bg-slate-700 rounded-lg text-gray-600 dark:text-gray-300 hover:text-red-500 hover:shadow-sm transition-colors"
                   aria-label="Decrease Quantity"
                 >
                   <Minus className="w-4 h-4" />
-                </button>
+                </motion.button>
               </div>
 
               {/* Total per item & Delete */}
@@ -162,13 +174,15 @@ const Cart = () => {
                   <span className="text-xs text-gray-400 dark:text-gray-500 font-medium">الإجمالي</span>
                   <span className="font-black text-gray-800 dark:text-white">{item.price * item.quantity} ج.م</span>
                 </div>
-                <button 
+                <motion.button 
+                  whileTap={{ scale: 0.9 }}
+                  transition={springConf}
                   onClick={() => removeFromCart(item.id)}
                   className="p-2.5 text-gray-400 hover:text-red-500 hover:bg-red-50 dark:hover:bg-red-900/30 rounded-xl transition-colors"
                   aria-label="Remove item"
                 >
                   <Trash2 className="w-5 h-5" />
-                </button>
+                </motion.button>
               </div>
             </div>
           ))}
@@ -176,7 +190,7 @@ const Cart = () => {
 
         {/* Order Summary & Checkout Form */}
         <div className="lg:sticky lg:top-24 h-fit">
-          <div className="bg-white dark:bg-slate-900 p-7 rounded-3xl shadow-lg shadow-gray-100/50 dark:shadow-none border border-gray-100 dark:border-slate-800 space-y-6">
+          <div className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-2xl saturate-150 p-7 rounded-3xl shadow-lg shadow-gray-100/50 dark:shadow-none border border-gray-100 dark:border-slate-800 space-y-6">
             
             <div className="border-b border-gray-100 dark:border-slate-800 pb-5 flex flex-col gap-2">
               <div className="flex justify-between items-center">
@@ -188,15 +202,23 @@ const Cart = () => {
             </div>
 
             {!isCheckingOut ? (
-              <button 
+              <motion.button 
+                whileTap={{ scale: 0.95 }}
+                transition={springConf}
                 onClick={handleCheckoutClick}
-                className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-green-600 to-teal-500 hover:from-green-700 hover:to-teal-600 text-white px-6 py-4 rounded-xl font-bold transition-all shadow-md hover:shadow-lg transform active:scale-95 mt-6"
+                className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-green-600 to-teal-500 hover:from-green-700 hover:to-teal-600 text-white px-6 py-4 rounded-xl font-bold transition-colors shadow-md hover:shadow-lg mt-6"
               >
                 <CreditCard className="w-5 h-5" />
                 <span>إتمام الطلب</span>
-              </button>
+              </motion.button>
             ) : (
-              <form onSubmit={submitOrder} className="space-y-4 animate-in slide-in-from-top-4 duration-300">
+              <motion.form 
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: 'auto' }}
+                transition={springConf}
+                onSubmit={submitOrder} 
+                className="space-y-4"
+              >
                 <h3 className="font-bold text-gray-800 dark:text-white border-b border-gray-100 dark:border-slate-800 pb-2">بيانات التوصيل</h3>
                 
                 <AddressSelector 
@@ -210,26 +232,30 @@ const Cart = () => {
                 />
 
                 <div className="pt-2 flex gap-3">
-                  <button 
+                  <motion.button 
+                    whileTap={{ scale: 0.95 }}
+                    transition={springConf}
                     type="submit"
-                    className="flex-1 bg-gradient-to-r from-green-600 to-teal-500 hover:from-green-700 hover:to-teal-600 text-white px-4 py-3 rounded-xl font-bold transition-all shadow-md transform active:scale-95"
+                    className="flex-1 bg-gradient-to-r from-green-600 to-teal-500 hover:from-green-700 hover:to-teal-600 text-white px-4 py-3 rounded-xl font-bold transition-colors shadow-md"
                   >
                     تأكيد الطلب
-                  </button>
-                  <button 
+                  </motion.button>
+                  <motion.button 
+                    whileTap={{ scale: 0.95 }}
+                    transition={springConf}
                     type="button"
                     onClick={() => setIsCheckingOut(false)}
-                    className="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-600 dark:bg-slate-800 dark:hover:bg-slate-700 dark:text-gray-300 px-4 py-3 rounded-xl font-bold transition-all"
+                    className="flex-1 bg-gray-100 hover:bg-gray-200 text-gray-600 dark:bg-slate-800 dark:hover:bg-slate-700 dark:text-gray-300 px-4 py-3 rounded-xl font-bold transition-colors"
                   >
                     إلغاء
-                  </button>
+                  </motion.button>
                 </div>
-              </form>
+              </motion.form>
             )}
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
