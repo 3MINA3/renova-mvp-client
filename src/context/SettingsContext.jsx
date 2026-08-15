@@ -4,11 +4,20 @@ const SettingsContext = createContext();
 
 export const useSettings = () => useContext(SettingsContext);
 
-const INITIAL_CATEGORIES = ['أثاث وديكور', 'أدوات مكتبية', 'أزياء وإكسسوارات', 'إضاءة'];
+const INITIAL_CATEGORIES = ['أجهزة علمية مجددة', 'قطع كمبيوتر مجددة', 'ملحقات مجددة'];
 const INITIAL_SCRAP_TYPES = ['بلاستيك', 'كرتون', 'معادن', 'زيت', 'أخرى'];
+
+const CURRENT_SETTINGS_VERSION = 'v3.0';
 
 export const SettingsProvider = ({ children }) => {
   const [productCategories, setProductCategories] = useState(() => {
+    // Force update if data version changes
+    const savedVersion = localStorage.getItem('settings_data_version');
+    if (savedVersion !== CURRENT_SETTINGS_VERSION) {
+      localStorage.setItem('settings_data_version', CURRENT_SETTINGS_VERSION);
+      return INITIAL_CATEGORIES;
+    }
+
     const saved = localStorage.getItem('product_categories');
     return saved ? JSON.parse(saved) : INITIAL_CATEGORIES;
   });

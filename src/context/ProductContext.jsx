@@ -7,57 +7,50 @@ export const useProducts = () => useContext(ProductContext);
 const INITIAL_MOCK_PRODUCTS = [
   {
     id: 1,
-    name: 'طقم كراسي من إطارات السيارات',
-    category: 'أثاث وديكور',
-    price: 1500,
-    description: 'طقم جلوس مريح وأنيق مصنوع يدوياً من إطارات السيارات المعاد تدويرها، مثالي للحدائق والأماكن المفتوحة.',
-    image: 'https://images.unsplash.com/photo-1536553896016-0925c47796d1?auto=format&fit=crop&w=800&q=80',
+    name: 'جهاز تقليب مغناطيسي ReNova',
+    category: 'أجهزة علمية مجددة',
+    price: 1299,
+    description: 'جهاز تقليب مغناطيسي عملي واقتصادي مُعاد تدويره من مكونات إلكترونية مستردة، مزود بسرعة قابلة للتعديل. مثالي للمعامل التعليمية وطلاب STEM، ويساهم في تقليل النفايات الإلكترونية.',
+    image: '/renova-mvp-client/renova-stirrer.jpg',
   },
   {
     id: 2,
-    name: 'دفتر ملاحظات من ورق مُعاد تدويره',
-    category: 'أدوات مكتبية',
-    price: 85,
-    description: 'دفتر بتصميم كلاسيكي يحتوي على 200 صفحة من الورق المعاد تدويره 100%، خالي من المواد الكيميائية.',
-    image: 'https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=800&q=80',
+    name: 'كيسة كمبيوتر معدنية (مجددة)',
+    category: 'قطع كمبيوتر مجددة',
+    price: 450,
+    description: 'كيسة متينة وواسعة تم تجديدها بالكامل، تسمح بتهوية ممتازة لمكونات الجهاز، وبحالة جيدة جداً.',
+    image: '/renova-mvp-client/case.png',
   },
   {
     id: 3,
-    name: 'نجفة إضاءة من المواسير النحاسية',
-    category: 'إضاءة',
-    price: 850,
-    description: 'وحدة إضاءة ذات طابع صناعي (Industrial) مصنوعة من بواقي مواسير النحاس الخردة وتضفي لمسة عصرية.',
-    image: 'https://images.unsplash.com/photo-1513506003901-1e6a229e9d15?auto=format&fit=crop&w=800&q=80',
+    name: 'معالج Core i5 جيل رابع (مجدد)',
+    category: 'قطع كمبيوتر مجددة',
+    price: 1100,
+    description: 'معالج قوي للاستخدام المكتبي والألعاب المتوسطة، تم اختباره وتجديده ليعمل بثبات ودون مشاكل حرارة.',
+    image: '/renova-mvp-client/cpu.png',
   },
   {
     id: 4,
-    name: 'حقيبة قماشية من بقايا الجينز',
-    category: 'أزياء وإكسسوارات',
-    price: 250,
-    description: 'حقيبة عملية وقوية للاستخدام اليومي، تمت حياكتها بعناية من بقايا مصانع الجينز للحفاظ على البيئة.',
-    image: 'https://images.unsplash.com/photo-1590874103328-eac38a683ce7?auto=format&fit=crop&w=800&q=80',
-  },
-  {
-    id: 5,
-    name: 'مزهرية من زجاجات معُاد تشكيلها',
-    category: 'أثاث وديكور',
-    price: 120,
-    description: 'ديكور زجاجي فريد تم صنعه عن طريق صهر وتشكيل الزجاجات القديمة ليعطي ألواناً جذابة.',
-    image: 'https://images.unsplash.com/photo-1581783342308-f792dbdd27c5?auto=format&fit=crop&w=800&q=80',
-  },
-  {
-    id: 6,
-    name: 'مقلمة مكتب من علب الكانز',
-    category: 'أدوات مكتبية',
-    price: 45,
-    description: 'منظم أدوات مكتبية ملون وعملي مصنوع من علب المشروبات الغازية المعاد تدويرها بشكل آمن.',
-    image: 'https://images.unsplash.com/photo-1506806732259-39c2d0268443?auto=format&fit=crop&w=800&q=80',
+    name: 'شاشة كمبيوتر 19 بوصة (مجددة)',
+    category: 'ملحقات مجددة',
+    price: 850,
+    description: 'شاشة LED مجددة خالية من العيوب، تقدم ألوان زاهية ومناسبة للعمل اليومي المكتبي والمذاكرة.',
+    image: '/renova-mvp-client/monitor.png',
   }
 ];
+
+const CURRENT_DATA_VERSION = 'v3.3';
 
 export const ProductProvider = ({ children }) => {
   const [products, setProducts] = useState(() => {
     try {
+      // Force update if data version changes
+      const savedVersion = localStorage.getItem('product_data_version');
+      if (savedVersion !== CURRENT_DATA_VERSION) {
+        localStorage.setItem('product_data_version', CURRENT_DATA_VERSION);
+        return INITIAL_MOCK_PRODUCTS;
+      }
+
       const saved = localStorage.getItem('products');
       return saved ? JSON.parse(saved) : INITIAL_MOCK_PRODUCTS;
     } catch (e) {
