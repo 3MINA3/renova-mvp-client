@@ -31,9 +31,7 @@ const Contact = () => {
         }}
         className="grid md:grid-cols-3 gap-8"
       >
-        {/* Contact Info Cards */}
-        {/* Contact Info Cards */}
-        <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: springConf } }}>
+                        <motion.div variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: springConf } }}>
           <TiltCard 
             options={{ max: 15, scale: 1.05, glare: true, "max-glare": 0.2 }}
             className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl saturate-150 p-8 rounded-3xl shadow-lg border border-gray-100/50 dark:border-slate-800/80 text-center flex flex-col items-center h-full cursor-pointer"

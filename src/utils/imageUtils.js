@@ -1,9 +1,3 @@
-/**
- * Compresses an image file and returns a smaller data URL along with some metadata.
- * 
- * @param {File} file - The image file to compress.
- * @returns {Promise<{ compressedDataUrl: string, imageInfo: { originalSize: string, dimensions: string } }>}
- */
 export const compressImage = (file) => {
   return new Promise((resolve, reject) => {
     if (!file) {

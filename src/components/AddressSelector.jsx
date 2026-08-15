@@ -13,8 +13,7 @@ const AddressSelector = ({
   return (
     <div className="space-y-4">
       <div className="max-h-64 overflow-y-auto pl-2 space-y-3 custom-scrollbar">
-        {/* Primary Address */}
-        {(user?.address?.city || (user?.address && typeof user.address === 'string')) && (
+                {(user?.address?.city || (user?.address && typeof user.address === 'string')) && (
           <label className="flex items-start gap-3 p-4 border border-gray-200 dark:border-slate-700 rounded-xl cursor-pointer hover:bg-gray-50 dark:hover:bg-slate-800 transition-colors">
             <input 
               type="radio" 
@@ -35,8 +34,7 @@ const AddressSelector = ({
           </label>
         )}
 
-        {/* Saved Delivery Addresses */}
-        {user?.deliveryAddresses?.map((addr, idx) => (
+                {user?.deliveryAddresses?.map((addr, idx) => (
           <label key={addr.id || `delivery-${idx}-${addr.city}`} className="flex items-start gap-3 p-4 border border-gray-200 dark:border-slate-700 rounded-xl cursor-pointer hover:bg-gray-50 dark:hover:bg-slate-800 transition-colors">
             <input 
               type="radio" 
@@ -55,8 +53,7 @@ const AddressSelector = ({
           </label>
         ))}
 
-        {/* Add New Address */}
-        <label className="flex items-start gap-3 p-4 border border-gray-200 dark:border-slate-700 rounded-xl cursor-pointer hover:bg-gray-50 dark:hover:bg-slate-800 transition-colors">
+                <label className="flex items-start gap-3 p-4 border border-gray-200 dark:border-slate-700 rounded-xl cursor-pointer hover:bg-gray-50 dark:hover:bg-slate-800 transition-colors">
           <input 
             type="radio" 
             name="addressMode" 
@@ -72,8 +69,7 @@ const AddressSelector = ({
         </label>
       </div>
 
-      {/* New Address Form */}
-      {addressMode === 'new' && (
+            {addressMode === 'new' && (
         <div className="p-4 bg-gray-50 dark:bg-slate-800 rounded-xl space-y-3 animate-in fade-in zoom-in-95 duration-200">
           <div>
             <label htmlFor="newCity" className="block text-xs font-bold text-gray-700 dark:text-gray-300 mb-1">المدينة *</label>

@@ -22,8 +22,7 @@ const Home = () => {
     <div className="space-y-12 animate-in fade-in duration-500 pb-12">
       <HeroSection />
 
-      {/* Category Filter */}
-      <div className="flex flex-wrap items-center justify-center gap-3 md:gap-4 py-4">
+            <div className="flex flex-wrap items-center justify-center gap-3 md:gap-4 py-4">
         {CATEGORIES.map(category => (
           <motion.button
             key={category}
@@ -40,8 +39,7 @@ const Home = () => {
         ))}
       </div>
 
-      {/* Product Grid */}
-      {filteredProducts.length === 0 ? (
+            {filteredProducts.length === 0 ? (
         <motion.div 
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}

@@ -28,14 +28,14 @@ const RequestsManager = () => {
   const getStatusBadge = (status) => {
     switch(status) {
       case 'new':
-      case 'pending': // fallback for old data
+      case 'pending':
         return <span className="bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-500 px-3 py-1.5 rounded-full text-xs font-bold border border-blue-200 dark:border-blue-800">جديد</span>;
       case 'contacted':
         return <span className="bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-400 px-3 py-1.5 rounded-full text-xs font-bold border border-purple-200 dark:border-purple-800">تم التواصل</span>;
       case 'negotiating':
         return <span className="bg-orange-100 dark:bg-orange-900/30 text-orange-700 dark:text-orange-500 px-3 py-1.5 rounded-full text-xs font-bold border border-orange-200 dark:border-orange-800">جاري التفاوض</span>;
       case 'accepted':
-      case 'approved': // fallback for old data
+      case 'approved':
         return <span className="bg-teal-100 dark:bg-teal-900/30 text-teal-700 dark:text-teal-400 px-3 py-1.5 rounded-full text-xs font-bold border border-teal-200 dark:border-teal-800">مقبول</span>;
       case 'rejected':
         return <span className="bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-400 px-3 py-1.5 rounded-full text-xs font-bold border border-red-200 dark:border-red-800">مرفوض</span>;
@@ -59,15 +59,13 @@ const RequestsManager = () => {
   return (
     <div className="space-y-6 pb-10 animate-in fade-in duration-500">
       
-      {/* Header & Filters */}
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <div>
           <h1 className="text-3xl font-extrabold text-gray-900 dark:text-white">طلبات بيع الخردة</h1>
           <p className="text-gray-500 dark:text-gray-400 mt-2">إدارة طلبات المستخدمين لبيع الخردة الخاصة بهم</p>
         </div>
         
-        {/* Filters */}
-        <div className="w-full sm:w-auto overflow-x-auto pb-2 sm:pb-0 custom-scrollbar">
+                <div className="w-full sm:w-auto overflow-x-auto pb-2 sm:pb-0 custom-scrollbar">
           <div className="flex bg-white dark:bg-slate-900 rounded-xl shadow-sm border border-gray-100 dark:border-slate-800 p-1 min-w-max">
             {statuses.map(s => (
               <button 
@@ -82,8 +80,7 @@ const RequestsManager = () => {
         </div>
       </div>
 
-      {/* Requests List */}
-      {filteredRequests.length === 0 ? (
+            {filteredRequests.length === 0 ? (
         <div className="bg-white dark:bg-slate-900 rounded-3xl p-16 text-center shadow-sm border border-gray-100 dark:border-slate-800">
           <div className="bg-gray-50 dark:bg-slate-800 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
             <Inbox className="w-10 h-10 text-gray-300 dark:text-gray-600" />
@@ -96,8 +93,7 @@ const RequestsManager = () => {
           {filteredRequests.map((req) => (
             <div key={req.id} className="bg-white dark:bg-slate-900 rounded-3xl shadow-sm border border-gray-100 dark:border-slate-800 hover:shadow-md transition-all overflow-hidden flex flex-col">
               
-              {/* Card Header */}
-              <div className="p-6 border-b border-gray-50 dark:border-slate-800 flex items-center justify-between bg-gray-50/50 dark:bg-slate-800/50">
+                            <div className="p-6 border-b border-gray-50 dark:border-slate-800 flex items-center justify-between bg-gray-50/50 dark:bg-slate-800/50">
                 <div className="flex items-center gap-3">
                   <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-green-500 to-teal-500 text-white flex items-center justify-center shadow-sm flex-shrink-0">
                     <Recycle className="w-5 h-5" />
@@ -110,11 +106,9 @@ const RequestsManager = () => {
                 <div>{getStatusBadge(req.status)}</div>
               </div>
 
-              {/* Card Body */}
-              <div className="p-6 grid grid-cols-1 md:grid-cols-2 gap-6 flex-1">
+                            <div className="p-6 grid grid-cols-1 md:grid-cols-2 gap-6 flex-1">
                 
-                {/* Scrap Info */}
-                <div className="space-y-4">
+                                <div className="space-y-4">
                   <h4 className="font-bold text-gray-700 dark:text-gray-300 border-b border-gray-100 dark:border-slate-800 pb-2">بيانات الخردة</h4>
                   
                   <div className="bg-gray-50 dark:bg-slate-800 p-4 rounded-2xl space-y-3">
@@ -135,8 +129,7 @@ const RequestsManager = () => {
                   </div>
                 </div>
 
-                {/* User Info */}
-                <div className="space-y-4">
+                                <div className="space-y-4">
                   <h4 className="font-bold text-gray-700 dark:text-gray-300 border-b border-gray-100 dark:border-slate-800 pb-2">بيانات العميل</h4>
                   
                   <div className="space-y-3">
@@ -172,8 +165,7 @@ const RequestsManager = () => {
                   </div>
                 </div>
 
-                {/* Additional Details (Description & Image) */}
-                {(req.description || req.image) && (
+                                {(req.description || req.image) && (
                   <div className="md:col-span-2 mt-2 space-y-4">
                     <h4 className="font-bold text-gray-700 dark:text-gray-300 border-b border-gray-100 dark:border-slate-800 pb-2">تفاصيل إضافية</h4>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -204,8 +196,7 @@ const RequestsManager = () => {
                 
               </div>
 
-              {/* Card Actions */}
-              <div className="p-4 bg-gray-50 dark:bg-slate-800/50 border-t border-gray-100 dark:border-slate-800 flex items-center justify-between gap-3 mt-auto">
+                            <div className="p-4 bg-gray-50 dark:bg-slate-800/50 border-t border-gray-100 dark:border-slate-800 flex items-center justify-between gap-3 mt-auto">
                 <div className="flex items-center gap-2 flex-1">
                   <span className="text-xs font-bold text-gray-500 dark:text-gray-400">تحديث الحالة:</span>
                   <select
@@ -232,8 +223,7 @@ const RequestsManager = () => {
         </div>
       )}
 
-      {/* Image Preview Modal */}
-      {selectedImage && (
+            {selectedImage && (
         <div 
           className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 p-4 animate-in fade-in duration-200"
           onClick={() => setSelectedImage(null)}

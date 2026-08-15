@@ -11,12 +11,10 @@ const Dashboard = () => {
   const { requests } = useRequests();
   const { orders } = useOrders();
   
-  // Calculate total revenue from delivered orders
   const totalRevenue = orders
     .filter(o => ['delivered', 'completed'].includes(o.status))
     .reduce((sum, order) => sum + (parseFloat(order.totalAmount || order.total) || 0), 0);
 
-  // Overview Stats
   const overviewStats = [
     { 
       title: 'إجمالي العملاء', 
@@ -96,8 +94,7 @@ const Dashboard = () => {
         </div>
       </div>
       
-      {/* Overview Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {overviewStats.map((stat, index) => (
           <div key={stat.title || index} className="bg-white dark:bg-slate-900 p-6 rounded-3xl shadow-sm border border-gray-100 dark:border-slate-800 hover:shadow-md transition-shadow flex items-center gap-5">
             <div className={`w-16 h-16 rounded-2xl flex flex-shrink-0 items-center justify-center ${stat.bg}`}>
@@ -113,11 +110,9 @@ const Dashboard = () => {
         ))}
       </div>
 
-      {/* Detailed Breakdown */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
         
-        {/* Orders Breakdown */}
-        <div className="bg-white dark:bg-slate-900 p-8 rounded-3xl shadow-sm border border-gray-100 dark:border-slate-800">
+                <div className="bg-white dark:bg-slate-900 p-8 rounded-3xl shadow-sm border border-gray-100 dark:border-slate-800">
           <div className="flex items-center justify-between mb-8">
             <div className="flex items-center gap-3">
               <div className="w-12 h-12 rounded-xl bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 flex items-center justify-center">
@@ -141,8 +136,7 @@ const Dashboard = () => {
           </div>
         </div>
 
-        {/* Requests Breakdown */}
-        <div className="bg-white dark:bg-slate-900 p-8 rounded-3xl shadow-sm border border-gray-100 dark:border-slate-800">
+                <div className="bg-white dark:bg-slate-900 p-8 rounded-3xl shadow-sm border border-gray-100 dark:border-slate-800">
           <div className="flex items-center justify-between mb-8">
             <div className="flex items-center gap-3">
               <div className="w-12 h-12 rounded-xl bg-emerald-50 dark:bg-emerald-900/30 text-emerald-600 flex items-center justify-center">

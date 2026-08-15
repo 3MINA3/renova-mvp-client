@@ -44,7 +44,6 @@ const CURRENT_DATA_VERSION = 'v3.3';
 export const ProductProvider = ({ children }) => {
   const [products, setProducts] = useState(() => {
     try {
-      // Force update if data version changes
       const savedVersion = localStorage.getItem('product_data_version');
       if (savedVersion !== CURRENT_DATA_VERSION) {
         localStorage.setItem('product_data_version', CURRENT_DATA_VERSION);
@@ -64,17 +63,13 @@ export const ProductProvider = ({ children }) => {
       localStorage.setItem('products', JSON.stringify(products));
     } catch (e) {
       console.error('Storage full:', e);
-      // We can't easily import toast here if it's not available, 
-      // but we can alert the user.
       if (e.name === 'QuotaExceededError' || e.message.includes('quota')) {
         alert('حدث خطأ: حجم الصورة كبير جداً، الذاكرة ممتلئة! يرجى اختيار صورة أصغر حجماً.');
-        // Revert the last added product if storage fails
         setProducts(products.slice(0, -1));
       }
     }
   }, [products]);
 
-  // Sync products across different browser tabs
   useEffect(() => {
     const handleStorage = (e) => {
       if (e.key === 'products') {

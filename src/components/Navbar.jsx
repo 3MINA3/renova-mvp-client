@@ -21,14 +21,11 @@ const Navbar = () => {
   return (
     <nav className="bg-white/60 dark:bg-slate-950/60 backdrop-blur-[20px] saturate-[180%] sticky top-0 z-50 border-b border-gray-100 dark:border-slate-800/80 transition-colors duration-300">
       <div className="container mx-auto px-4 py-3 flex justify-between items-center">
-        {/* Logo */}
-        <motion.div whileTap={{ scale: 0.97 }} transition={springConf}>
+                <motion.div whileTap={{ scale: 0.97 }} transition={springConf}>
           <Link to="/" className="relative flex items-center justify-center p-0.5 rounded-2xl group transition-all duration-500">
-            {/* Animated Gradient Border */}
-            <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-emerald-500 via-teal-500 to-lime-500 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                        <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-emerald-500 via-teal-500 to-lime-500 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
             
-            {/* Inner Logo Container */}
-            <div className="relative bg-white dark:bg-slate-900 rounded-xl overflow-hidden p-1 z-10">
+                        <div className="relative bg-white dark:bg-slate-900 rounded-xl overflow-hidden p-1 z-10">
               <img 
                 src={`${import.meta.env.BASE_URL}logo.png`} 
                 alt="Renova Logo" 
@@ -38,8 +35,7 @@ const Navbar = () => {
           </Link>
         </motion.div>
 
-        {/* Navigation Links */}
-        <div className="flex items-center gap-3 sm:gap-5 md:gap-8">
+                <div className="flex items-center gap-3 sm:gap-5 md:gap-8">
 
           <motion.button
             whileTap={{ scale: 0.90 }}

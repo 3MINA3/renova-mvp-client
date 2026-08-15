@@ -18,8 +18,7 @@ const HeroSection = () => {
     >
       <div className="relative p-8 md:p-16 lg:p-20 flex flex-col md:flex-row items-center justify-between gap-10">
 
-        {/* Text Content */}
-        <div className="flex-1 space-y-6 z-10 text-center md:text-start">
+                <div className="flex-1 space-y-6 z-10 text-center md:text-start">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/90 dark:bg-stone-800/80 backdrop-blur-md border border-emerald-200 dark:border-emerald-500/30 text-sm font-bold text-emerald-700 dark:text-lime-400 mb-4 shadow-sm dark:shadow-[0_0_15px_rgba(16,185,129,0.15)]">
             <Recycle className="w-4 h-4 animate-spin-slow" />
             <span>شريكك نحو بيئة مستدامة</span>
@@ -46,14 +45,11 @@ const HeroSection = () => {
           </div>
         </div>
 
-        {/* Visual Element */}
-        <div className="flex-1 hidden md:flex justify-center items-center relative z-10 animate-float">
+                <div className="flex-1 hidden md:flex justify-center items-center relative z-10 animate-float">
           <div className="relative w-72 h-72 lg:w-96 lg:h-96 flex items-center justify-center group">
-            {/* Simple elegant glow */}
-            <div className="absolute inset-0 bg-white/10 blur-3xl rounded-full group-hover:bg-white/20 transition-all duration-700"></div>
+                        <div className="absolute inset-0 bg-white/10 blur-3xl rounded-full group-hover:bg-white/20 transition-all duration-700"></div>
             
-            {/* Clean White Logo Card */}
-            <TiltCard 
+                        <TiltCard 
               options={{ max: 20, scale: 1.05, glare: true, "max-glare": 0.4 }}
               className="relative z-10 w-64 h-64 lg:w-80 lg:h-80 bg-white rounded-[2rem] shadow-2xl flex items-center justify-center p-6 border-4 border-white/50 overflow-hidden cursor-pointer"
             >

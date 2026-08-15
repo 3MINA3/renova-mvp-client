@@ -22,7 +22,6 @@ export const OrdersProvider = ({ children }) => {
       console.error('Storage full:', e);
       if (e.name === 'QuotaExceededError' || e.message.includes('quota')) {
         alert('حدث خطأ: مساحة التخزين ممتلئة! لا يمكن حفظ المزيد من الطلبات.');
-        // Graceful failure or fallback logic can be added here
       }
     }
   }, [orders]);

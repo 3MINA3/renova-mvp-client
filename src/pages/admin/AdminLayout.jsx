@@ -24,8 +24,7 @@ const AdminLayout = () => {
 
   return (
     <div className="flex h-screen bg-gray-50 dark:bg-slate-950 transition-colors duration-300" dir="rtl">
-      {/* Sidebar */}
-      <aside className="w-72 bg-white dark:bg-slate-900 text-gray-900 dark:text-white flex flex-col shadow-xl z-20 border-l border-gray-100 dark:border-slate-800 transition-colors duration-300">
+            <aside className="w-72 bg-white dark:bg-slate-900 text-gray-900 dark:text-white flex flex-col shadow-xl z-20 border-l border-gray-100 dark:border-slate-800 transition-colors duration-300">
         <div className="p-6 flex items-center gap-3 border-b border-gray-100 dark:border-slate-800 transition-colors duration-300">
           <div className="bg-green-500 p-2 rounded-lg">
             <ShieldCheck className="w-6 h-6 text-white" />
@@ -85,8 +84,7 @@ const AdminLayout = () => {
         </div>
       </aside>
 
-      {/* Main Content */}
-      <main className="flex-1 overflow-y-auto p-8 bg-gray-50 dark:bg-slate-950 text-gray-900 dark:text-gray-100 transition-colors duration-300">
+            <main className="flex-1 overflow-y-auto p-8 bg-gray-50 dark:bg-slate-950 text-gray-900 dark:text-gray-100 transition-colors duration-300">
         <div className="max-w-6xl mx-auto">
           <Outlet />
         </div>

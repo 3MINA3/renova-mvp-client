@@ -6,15 +6,13 @@ const Footer = () => {
   
   return (
     <footer className="bg-gray-900 text-gray-300 pt-16 pb-8 mt-20 border-t border-gray-800 relative overflow-hidden">
-      {/* Decorative gradients */}
-      <div className="absolute top-0 left-1/4 w-96 h-96 bg-green-500/5 rounded-full blur-3xl -z-10"></div>
+            <div className="absolute top-0 left-1/4 w-96 h-96 bg-green-500/5 rounded-full blur-3xl -z-10"></div>
       <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-teal-500/5 rounded-full blur-3xl -z-10"></div>
 
       <div className="container mx-auto px-6">
         <div className="flex flex-col lg:flex-row justify-between items-start gap-12 mb-12">
           
-          {/* Brand & Description */}
-          <div className="lg:w-1/3">
+                    <div className="lg:w-1/3">
             <Link to="/" className="flex items-center gap-2 group w-fit mb-4">
               <div className="bg-gradient-to-tr from-green-500 to-teal-500 text-white p-2 rounded-xl group-hover:rotate-180 transition-transform duration-500 shadow-lg shadow-green-500/20">
                 <Recycle className="w-5 h-5" />
@@ -23,16 +21,37 @@ const Footer = () => {
                 Renova
               </span>
             </Link>
-            <p className="text-gray-400 leading-relaxed text-sm">
+            <p className="text-gray-400 leading-relaxed text-sm mb-8">
               نجمع خردتك لنبني مستقبلاً أنظف. منصتك الأولى لبيع الخردة وإعادة تدويرها بأسعار تنافسية للمساهمة في بيئة مستدامة.
             </p>
+            <a 
+              href="https://github.com/3MINA3" 
+              target="_blank" 
+              rel="noreferrer" 
+              className="inline-flex items-center gap-3 bg-gray-800/80 hover:bg-gray-800 border border-gray-700 hover:border-green-500/50 px-5 py-3 rounded-2xl transition-all duration-300 group shadow-lg hover:shadow-green-500/10"
+            >
+              <div className="bg-gradient-to-br from-green-500/20 to-teal-500/20 p-2.5 rounded-xl group-hover:scale-110 transition-transform shadow-inner shadow-green-500/10 flex items-center justify-center">
+                <svg viewBox="0 0 100 100" fill="none" stroke="currentColor" strokeWidth="4" strokeLinejoin="round" strokeLinecap="round" className="w-8 h-8 text-green-400 drop-shadow-md">
+                  <polygon points="50,25 70,25 85,35 70,40 60,40 65,55 50,85 50,95 40,95 40,85 20,85 10,95 5,90 25,60 40,40" />
+                  <line x1="40" y1="40" x2="60" y2="40" />
+                  <line x1="25" y1="60" x2="65" y2="55" />
+                  <line x1="40" y1="85" x2="50" y2="85" />
+                  <line x1="25" y1="60" x2="40" y2="85" />
+                  <circle cx="60" cy="30" r="3" fill="currentColor" stroke="none" />
+                </svg>
+              </div>
+              <div className="flex flex-col">
+                <span className="text-[10px] text-gray-400/80 font-bold tracking-[0.2em] mb-0.5 uppercase">Designed & Developed By</span>
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-400 to-teal-400 font-black text-xl font-mono tracking-widest">
+                  NORMER
+                </span>
+              </div>
+            </a>
           </div>
 
-          {/* Links and Contact side-by-side */}
-          <div className="flex flex-wrap sm:flex-nowrap gap-12 lg:gap-24 lg:w-2/3 lg:justify-end">
+                    <div className="flex flex-wrap sm:flex-nowrap gap-12 lg:gap-24 lg:w-2/3 lg:justify-end">
             
-            {/* Quick Links */}
-            <div>
+                        <div>
               <h4 className="text-white font-bold mb-6 text-lg">روابط سريعة</h4>
               <ul className="space-y-4 text-sm">
                 <li>
@@ -56,8 +75,7 @@ const Footer = () => {
               </ul>
             </div>
 
-            {/* Contact & Socials */}
-            <div>
+                        <div>
               <h4 className="text-white font-bold mb-6 text-lg">تواصل معنا</h4>
               <div className="flex flex-col gap-5 text-sm text-gray-400">
                 <p className="flex items-center gap-3 hover:text-white transition-colors cursor-pointer">
@@ -86,9 +104,9 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Copyright */}
         <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-500">
           <p>© {new Date().getFullYear()} <span className="font-brand text-gray-400">Renova</span>. جميع الحقوق محفوظة.</p>
+          
           <div className="flex gap-6">
             <Link to="#" className="hover:text-white transition-colors">سياسة الخصوصية</Link>
             <Link to="#" className="hover:text-white transition-colors">الشروط والأحكام</Link>

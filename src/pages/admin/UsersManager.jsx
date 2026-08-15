@@ -18,7 +18,6 @@ const UsersManager = () => {
     deliveryAddresses: []
   });
   
-  // Re-instantiate users to get the getter methods like `age`
   const usersToDisplay = registeredUsers.map(u => {
     const userObj = new User(u);
     userObj.password = u.password;
@@ -93,8 +92,7 @@ const UsersManager = () => {
             <div key={user.id} className="bg-white dark:bg-slate-900 rounded-3xl shadow-sm border border-gray-100 dark:border-slate-800 hover:shadow-md transition-all overflow-hidden flex flex-col">
               
               {editingId === user.id ? (
-                /* Edit Mode Card */
-                <div className="p-6 flex-1 flex flex-col gap-4 animate-in fade-in duration-300">
+                                <div className="p-6 flex-1 flex flex-col gap-4 animate-in fade-in duration-300">
                   <div className="flex items-center justify-between mb-2">
                     <h3 className="font-extrabold text-lg text-teal-600 dark:text-teal-400">تعديل بيانات المستخدم</h3>
                   </div>
@@ -196,8 +194,7 @@ const UsersManager = () => {
                       </div>
                     </div>
 
-                    {/* Extra Addresses */}
-                    {editFormData.deliveryAddresses && editFormData.deliveryAddresses.length > 0 && (
+                                        {editFormData.deliveryAddresses && editFormData.deliveryAddresses.length > 0 && (
                       <div className="mt-4 border-t border-gray-100 dark:border-slate-800 pt-4">
                         <label className="block text-xs font-bold text-gray-500 dark:text-gray-400 mb-3">العناوين الإضافية المحفوظة</label>
                         <div className="space-y-3 max-h-48 overflow-y-auto custom-scrollbar pl-1">
@@ -261,8 +258,7 @@ const UsersManager = () => {
                   </div>
                 </div>
               ) : (
-                /* View Mode Card */
-                <>
+                                <>
                   <div className="p-6 border-b border-gray-50 dark:border-slate-800 flex items-start gap-4">
                     <div className="w-14 h-14 rounded-2xl bg-gradient-to-tr from-teal-500 to-emerald-400 text-white flex items-center justify-center font-extrabold text-2xl shadow-sm flex-shrink-0">
                       {user.name.charAt(0)}
@@ -304,8 +300,7 @@ const UsersManager = () => {
                       <div className="w-full">
                         <span className="block text-xs font-bold text-gray-400 dark:text-gray-500 mb-2">العناوين المحفوظة</span>
                         <div className="space-y-2 w-full">
-                          {/* Primary Address */}
-                          <div className="bg-gray-50 dark:bg-slate-800 p-2.5 rounded-lg border border-gray-100 dark:border-slate-700">
+                                                    <div className="bg-gray-50 dark:bg-slate-800 p-2.5 rounded-lg border border-gray-100 dark:border-slate-700">
                             <span className="block text-[10px] font-bold text-teal-600 dark:text-teal-400 mb-1">العنوان الأساسي</span>
                             <p className="text-sm text-gray-700 dark:text-gray-300">
                               {user.address?.city && user.address?.street 
@@ -314,8 +309,7 @@ const UsersManager = () => {
                             </p>
                           </div>
                           
-                          {/* Saved Addresses */}
-                          {user.deliveryAddresses && user.deliveryAddresses.length > 0 && (
+                                                    {user.deliveryAddresses && user.deliveryAddresses.length > 0 && (
                             <div className="space-y-2 mt-2">
                               {user.deliveryAddresses.map((addr, idx) => (
                                 <div key={addr.id || `addr-${idx}-${addr.city}`} className="bg-gray-50 dark:bg-slate-800 p-2.5 rounded-lg border border-gray-100 dark:border-slate-700">

@@ -4,11 +4,9 @@ import { motion } from 'framer-motion';
 const LiquidBackground = () => {
   return (
     <div className="fixed inset-0 overflow-hidden pointer-events-none -z-20">
-      {/* Base mesh gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-teal-50 via-gray-50 to-emerald-50 dark:from-slate-950 dark:via-gray-900 dark:to-teal-950/20"></div>
+            <div className="absolute inset-0 bg-gradient-to-br from-teal-50 via-gray-50 to-emerald-50 dark:from-slate-950 dark:via-gray-900 dark:to-teal-950/20"></div>
       
-      {/* Animated Liquid Blobs */}
-      <motion.div
+            <motion.div
         animate={{
           x: [0, 100, -50, 0],
           y: [0, 50, -100, 0],

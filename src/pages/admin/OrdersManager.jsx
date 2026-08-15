@@ -26,10 +26,10 @@ const OrdersManager = () => {
       case 'shipped':
         return <span className="bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-400 px-3 py-1.5 rounded-full text-xs font-bold flex items-center gap-1"><MapPin className="w-3 h-3"/> تم الشحن</span>;
       case 'delivered':
-      case 'completed': // fallback
+      case 'completed':
         return <span className="bg-green-100 dark:bg-green-900/30 text-green-700 dark:text-green-500 px-3 py-1.5 rounded-full text-xs font-bold flex items-center gap-1"><CheckCircle className="w-3 h-3"/> تم التوصيل</span>;
       case 'rejected':
-      case 'failed': // fallback
+      case 'failed':
         return <span className="bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-400 px-3 py-1.5 rounded-full text-xs font-bold flex items-center gap-1"><XCircle className="w-3 h-3"/> مرفوض</span>;
       default:
         return null;
@@ -54,8 +54,7 @@ const OrdersManager = () => {
           <p className="text-sm text-gray-500 dark:text-gray-400">متابعة وإدارة طلبات شراء المنتجات من المتجر</p>
         </div>
         
-        {/* Filters */}
-        <div className="w-full sm:w-auto overflow-x-auto pb-2 sm:pb-0 custom-scrollbar">
+                <div className="w-full sm:w-auto overflow-x-auto pb-2 sm:pb-0 custom-scrollbar">
           <div className="flex bg-white dark:bg-slate-900 rounded-xl shadow-sm border border-gray-100 dark:border-slate-800 p-1 min-w-max">
             {statuses.map(s => (
               <button 
@@ -80,8 +79,7 @@ const OrdersManager = () => {
           {filteredOrders.map(order => (
             <div key={order.id} className="bg-white dark:bg-slate-900 rounded-2xl p-6 shadow-sm border border-gray-100 dark:border-slate-800">
               
-              {/* Order Header */}
-              <div className="flex flex-col md:flex-row justify-between md:items-center gap-4 mb-6 border-b border-gray-100 dark:border-slate-800 pb-4">
+                            <div className="flex flex-col md:flex-row justify-between md:items-center gap-4 mb-6 border-b border-gray-100 dark:border-slate-800 pb-4">
                 <div className="flex items-center gap-4">
                   <div className="w-12 h-12 rounded-xl bg-teal-50 dark:bg-teal-900/30 flex items-center justify-center text-teal-600 dark:text-teal-400">
                     <ShoppingBag className="w-6 h-6" />
@@ -100,11 +98,9 @@ const OrdersManager = () => {
                 </div>
               </div>
 
-              {/* Order Content */}
-              <div className="grid md:grid-cols-2 gap-6">
+                            <div className="grid md:grid-cols-2 gap-6">
                 
-                {/* Customer Details */}
-                <div className="space-y-4">
+                                <div className="space-y-4">
                   <h4 className="font-bold text-gray-700 dark:text-gray-300 flex items-center gap-2">
                     <User className="w-4 h-4 text-gray-400" /> العميل
                   </h4>
@@ -128,8 +124,7 @@ const OrdersManager = () => {
                   </div>
                 </div>
 
-                {/* Order Items */}
-                <div className="space-y-4">
+                                <div className="space-y-4">
                   <h4 className="font-bold text-gray-700 dark:text-gray-300 flex items-center gap-2">
                     <Package className="w-4 h-4 text-gray-400" /> العناصر
                   </h4>
@@ -151,8 +146,7 @@ const OrdersManager = () => {
 
               </div>
 
-              {/* Card Actions */}
-              <div className="p-4 bg-gray-50 dark:bg-slate-800/50 border-t border-gray-100 dark:border-slate-800 flex items-center justify-between gap-3 mt-auto">
+                            <div className="p-4 bg-gray-50 dark:bg-slate-800/50 border-t border-gray-100 dark:border-slate-800 flex items-center justify-between gap-3 mt-auto">
                 <div className="flex items-center gap-2 flex-1">
                   <span className="text-xs font-bold text-gray-500 dark:text-gray-400">تحديث الحالة:</span>
                   <select

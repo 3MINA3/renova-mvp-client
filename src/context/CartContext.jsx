@@ -11,7 +11,6 @@ export const CartProvider = ({ children }) => {
     return savedCart ? JSON.parse(savedCart) : [];
   });
 
-  // Sync cart with local storage whenever it changes
   useEffect(() => {
     localStorage.setItem('cart', JSON.stringify(cart));
   }, [cart]);

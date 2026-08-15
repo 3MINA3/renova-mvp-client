@@ -23,7 +23,7 @@ export const RequestsProvider = ({ children }) => {
       if (e.name === 'QuotaExceededError' || e.message.includes('quota')) {
         alert('حدث خطأ: مساحة التخزين ممتلئة! لا يمكن حفظ المزيد من الطلبات.');
         if (requests.length > 0) {
-          setRequests(requests.slice(1)); // Remove oldest request to free space if needed, or just let it fail gracefully
+          setRequests(requests.slice(1));
         }
       }
     }

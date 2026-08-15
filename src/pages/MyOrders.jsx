@@ -18,7 +18,6 @@ const MyOrders = () => {
     return <Navigate to="/login" replace />;
   }
 
-  // Filter user's specific data
   const userOrders = orders.filter(o => o.userId === user?.id || o.userEmail === user?.email);
   const userRequests = requests.filter(r => r.userId === user?.id || r.userName === user?.name);
 
@@ -102,8 +101,7 @@ const MyOrders = () => {
           <p className="text-gray-500 dark:text-gray-400 mt-2">مرحباً بك، تابع حالة طلباتك وعمليات البيع الخاصة بك.</p>
         </div>
         
-        {/* Tabs */}
-        <div className="flex p-1 bg-gray-100/80 dark:bg-slate-800/80 backdrop-blur-md rounded-2xl border border-gray-200 dark:border-slate-700">
+                <div className="flex p-1 bg-gray-100/80 dark:bg-slate-800/80 backdrop-blur-md rounded-2xl border border-gray-200 dark:border-slate-700">
           <motion.button 
             whileTap={{ scale: 0.95 }}
             transition={springConf}
@@ -163,8 +161,7 @@ const MyOrders = () => {
                     <div>{getStatusBadge(order.status)}</div>
                   </div>
 
-                  {/* Delivery Info */}
-                  <div className="mb-4 pb-4 border-b border-gray-50 dark:border-slate-800 flex flex-col md:flex-row md:items-center gap-4">
+                                    <div className="mb-4 pb-4 border-b border-gray-50 dark:border-slate-800 flex flex-col md:flex-row md:items-center gap-4">
                     <div className="flex items-start gap-2 flex-1">
                       <MapPin className="w-4 h-4 text-gray-400 mt-0.5 flex-shrink-0" />
                       <div>

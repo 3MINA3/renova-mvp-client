@@ -10,7 +10,6 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [registeredUsers, setRegisteredUsers] = useState([]);
 
-  // Initialize auth state from local storage on mount
   useEffect(() => {
     let usersList = [];
     try {
@@ -23,7 +22,6 @@ export const AuthProvider = ({ children }) => {
     }
     
     if (!usersList || usersList.length === 0) {
-      // Create a default user for testing if no users exist
       const defaultUser = { id: 1, name: 'مستخدم تجريبي', email: 'test@renova.com', password: 'password', role: 'user' };
       usersList = [defaultUser];
       try {
@@ -40,14 +38,12 @@ export const AuthProvider = ({ children }) => {
     if (storedUserStr && storedToken) {
       try {
         const storedUser = JSON.parse(storedUserStr);
-        // Security check: Make sure this user still exists in the database (wasn't deleted by admin)
         const stillExists = usersList.some(u => u.id === storedUser.id);
         
         if (stillExists || storedUser.role === 'admin') {
           setUser(storedUser);
           setToken(storedToken);
         } else {
-          // Invalidate session if deleted
           console.warn("User session invalidated due to account deletion.");
           localStorage.removeItem('user');
           localStorage.removeItem('token');
@@ -83,9 +79,9 @@ export const AuthProvider = ({ children }) => {
       setToken(userToken);
       saveToStorage('user', userWithRole);
       localStorage.setItem('token', userToken);
-      return true; // success
+      return true;
     }
-    return false; // failure
+    return false;
   };
 
   const registerUser = (userData) => {
@@ -104,7 +100,6 @@ export const AuthProvider = ({ children }) => {
     setRegisteredUsers(updatedUsers);
     saveToStorage('registeredUsers', updatedUsers);
     
-    // Auto login after registration
     const userToken = `mock-token-${newUser.id}`;
     setUser(newUser);
     setToken(userToken);
@@ -115,7 +110,6 @@ export const AuthProvider = ({ children }) => {
   };
 
   const login = (userData, userToken) => {
-    // Keep this for admin login
     const userWithRole = { ...userData, role: userData.role || 'user' };
     setUser(userWithRole);
     setToken(userToken);
@@ -131,7 +125,6 @@ export const AuthProvider = ({ children }) => {
   };
 
   const deleteUser = (userId) => {
-    // Admin shouldn't delete themselves
     if (user && user.id === userId) {
         return false;
     }

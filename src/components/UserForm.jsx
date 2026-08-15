@@ -18,19 +18,16 @@ const UserForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     
-    // Basic validation
     if (!formData.name || !formData.email || !formData.dateOfBirth) {
       return toast.error('يرجى تعبئة الحقول الأساسية (الاسم، الإيميل، تاريخ الميلاد)');
     }
 
-    // Process phone numbers (comma separated if multiple)
     const phoneNumbers = formData.phone 
       ? formData.phone.split(',').map(p => p.trim()).filter(p => p) 
       : [];
 
-    // Create a new User instance from our model
     const newUser = new User({
-      id: Date.now(), // Generate a random ID for demo
+      id: Date.now(),
       name: formData.name,
       email: formData.email,
       phoneNumbers: phoneNumbers,
@@ -46,7 +43,6 @@ const UserForm = () => {
     setCreatedUser(newUser);
     toast.success('تم إنشاء المستخدم بنجاح! تم حساب العمر: ' + newUser.age);
     
-    // reset form
     setFormData({
       name: '', email: '', phone: '', dateOfBirth: '', city: '', street: ''
     });
@@ -65,8 +61,7 @@ const UserForm = () => {
       </div>
       
       <form onSubmit={handleSubmit} className="space-y-6">
-        {/* Personal Info */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           <div>
             <label htmlFor="name" className="flex items-center gap-2 text-sm font-bold text-gray-700 dark:text-gray-300 mb-2">
               <UserIcon className="w-4 h-4 text-gray-400" />
@@ -171,8 +166,7 @@ const UserForm = () => {
         </div>
       </form>
 
-      {/* Preview Section */}
-      {createdUser && (
+            {createdUser && (
         <div className="mt-8 bg-gray-50 dark:bg-slate-800 p-6 rounded-2xl border border-green-200 dark:border-green-900">
           <h3 className="text-lg font-bold text-green-800 dark:text-green-400 mb-4">تم إنشاء المستخدم بنجاح!</h3>
           <div className="grid grid-cols-2 md:grid-cols-3 gap-4 text-sm">

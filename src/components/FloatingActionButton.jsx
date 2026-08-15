@@ -8,7 +8,6 @@ const springConf = { type: "spring", bounce: 0, duration: 0.4 };
 const FloatingActionButton = () => {
     const location = useLocation();
 
-  // Don't show FAB on admin routes or if we are already on the sell-scrap page
   const isAdminRoute = location.pathname.startsWith('/admin');
   const isSellScrapRoute = location.pathname === '/sell-scrap';
 

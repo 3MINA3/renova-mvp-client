@@ -50,8 +50,7 @@ const SettingsManager = () => {
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         
-        {/* Scrap Types */}
-        <div className="bg-white dark:bg-slate-900 p-6 rounded-3xl shadow-sm border border-gray-100 dark:border-slate-800">
+                <div className="bg-white dark:bg-slate-900 p-6 rounded-3xl shadow-sm border border-gray-100 dark:border-slate-800">
           <div className="flex items-center gap-3 mb-6 border-b border-gray-100 dark:border-slate-800 pb-4">
             <div className="bg-orange-100 dark:bg-orange-900/30 p-2 rounded-lg text-orange-600 dark:text-orange-500">
               <Layers className="w-6 h-6" />
@@ -93,8 +92,7 @@ const SettingsManager = () => {
           </div>
         </div>
 
-        {/* Product Categories */}
-        <div className="bg-white dark:bg-slate-900 p-6 rounded-3xl shadow-sm border border-gray-100 dark:border-slate-800">
+                <div className="bg-white dark:bg-slate-900 p-6 rounded-3xl shadow-sm border border-gray-100 dark:border-slate-800">
           <div className="flex items-center gap-3 mb-6 border-b border-gray-100 dark:border-slate-800 pb-4">
             <div className="bg-green-100 dark:bg-green-900/30 p-2 rounded-lg text-green-600 dark:text-green-500">
               <Tag className="w-6 h-6" />

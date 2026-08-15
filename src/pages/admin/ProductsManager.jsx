@@ -41,7 +41,6 @@ const ProductsManager = () => {
       const originalSizeMB = (file.size / (1024 * 1024)).toFixed(2);
       const reader = new FileReader();
       reader.onloadend = () => {
-        // Create an image element to draw onto canvas for compression
         const img = new Image();
         img.onload = () => {
           setImageInfo({
@@ -53,7 +52,6 @@ const ProductsManager = () => {
           let width = img.width;
           let height = img.height;
           
-          // Max dimensions
           const MAX_WIDTH = 800;
           const MAX_HEIGHT = 800;
           
@@ -74,7 +72,6 @@ const ProductsManager = () => {
           const ctx = canvas.getContext('2d');
           ctx.drawImage(img, 0, 0, width, height);
           
-          // Compress to JPEG with 70% quality to save localStorage space
           const compressedDataUrl = canvas.toDataURL('image/jpeg', 0.7);
           setFormData(prev => ({ ...prev, image: compressedDataUrl }));
         };
@@ -90,7 +87,6 @@ const ProductsManager = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     
-    // Manual Validation
     if (!formData.name) return toast.error('يرجى إدخال اسم المنتج');
     if (!formData.category) return toast.error('يرجى اختيار القسم');
     if (!formData.price) return toast.error('يرجى إدخال السعر');
@@ -103,7 +99,7 @@ const ProductsManager = () => {
         id: editingId,
         price: Number(formData.price)
       });
-      updateProduct(editingId, { ...formData, ...updatedProduct }); // Ensure we keep category which might not be in generic Product model
+      updateProduct(editingId, { ...formData, ...updatedProduct });
       toast.success('تم تحديث المنتج بنجاح');
     } else {
       const newProduct = new Product({
@@ -111,7 +107,7 @@ const ProductsManager = () => {
         id: Date.now().toString(),
         price: Number(formData.price)
       });
-      addProduct({ ...formData, ...newProduct }); // Keep category
+      addProduct({ ...formData, ...newProduct });
       toast.success('تم إضافة المنتج بنجاح');
     }
     resetForm();
@@ -196,8 +192,7 @@ const ProductsManager = () => {
               <div>
                 <label htmlFor="image" className="block text-sm font-bold text-gray-700 dark:text-gray-300 mb-3">صورة المنتج</label>
                 
-                {/* Tabs for Image Input Type */}
-                <div className="flex gap-2 mb-4 bg-gray-50 dark:bg-slate-800 p-1.5 rounded-xl border border-gray-100 dark:border-slate-700">
+                                <div className="flex gap-2 mb-4 bg-gray-50 dark:bg-slate-800 p-1.5 rounded-xl border border-gray-100 dark:border-slate-700">
                   <button
                     type="button"
                     onClick={() => setImageMode('file')}

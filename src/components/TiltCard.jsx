@@ -7,7 +7,6 @@ const TiltCard = ({ children, options = {}, className = '', ...rest }) => {
   useEffect(() => {
     const element = tiltRef.current;
     
-    // Default premium options
     const defaultOptions = {
       max: 15,
       speed: 400,

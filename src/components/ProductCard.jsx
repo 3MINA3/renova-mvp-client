@@ -23,23 +23,19 @@ const ProductCard = ({ product }) => {
         transition={springConf}
         className="flex flex-col h-full w-full relative"
       >
-      {/* Product Image Container */}
-      <div className="relative h-60 w-full overflow-hidden bg-gray-100/50 dark:bg-slate-800/50">
+            <div className="relative h-60 w-full overflow-hidden bg-gray-100/50 dark:bg-slate-800/50">
         <img 
           src={product.image} 
           alt={product.name} 
           className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
         />
-        {/* Overlay gradient for a premium look */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
         
-        {/* Category Badge */}
-        <span className="absolute top-4 right-4 bg-white/80 dark:bg-slate-800/90 px-4 py-1.5 rounded-full text-xs font-bold text-gray-800 dark:text-gray-200 shadow-sm backdrop-blur-md border border-white/50 dark:border-slate-700">
+                <span className="absolute top-4 right-4 bg-white/80 dark:bg-slate-800/90 px-4 py-1.5 rounded-full text-xs font-bold text-gray-800 dark:text-gray-200 shadow-sm backdrop-blur-md border border-white/50 dark:border-slate-700">
           {product.category}
         </span>
         
-        {/* Favorite Button */}
-        <motion.button 
+                <motion.button 
           whileTap={{ scale: 0.85 }}
           transition={springConf}
           onClick={(e) => {
@@ -53,8 +49,7 @@ const ProductCard = ({ product }) => {
         </motion.button>
       </div>
 
-      {/* Product Info */}
-      <div className="p-6 flex flex-col flex-grow relative z-10">
+            <div className="p-6 flex flex-col flex-grow relative z-10">
         <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2 line-clamp-1 group-hover:text-green-700 dark:group-hover:text-green-400 transition-colors">{product.name}</h3>
         <div className="relative mb-6">
           <div className="text-sm text-gray-500 dark:text-gray-400 max-h-[45px] group-hover:max-h-[300px] overflow-hidden transition-[max-height] duration-700 ease-in-out leading-relaxed">

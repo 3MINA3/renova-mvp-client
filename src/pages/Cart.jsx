@@ -66,7 +66,6 @@ const Cart = () => {
       finalAddress = `${newCity}، ${newStreet}`;
       
       const updatedDeliveryAddresses = [...(user?.deliveryAddresses || []), { city: newCity, street: newStreet }];
-      // Save the new address to the user's deliveryAddresses list
       updateUser(user?.id, { 
         deliveryAddresses: updatedDeliveryAddresses
       });
@@ -129,8 +128,7 @@ const Cart = () => {
       </div>
       
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 relative">
-        {/* Cart Items */}
-        <div className="lg:col-span-2 space-y-5">
+                <div className="lg:col-span-2 space-y-5">
           {cart.map((item) => (
             <div key={item.id} className="group flex flex-col sm:flex-row items-center bg-white dark:bg-slate-900 p-4 rounded-2xl shadow-sm hover:shadow-md transition-shadow border border-gray-100 dark:border-slate-800 gap-5">
               <div className="relative w-28 h-28 flex-shrink-0">
@@ -145,8 +143,7 @@ const Cart = () => {
                 <span className="text-teal-600 dark:text-teal-400 font-bold">{item.price} ج.م</span>
               </div>
               
-              {/* Quantity Controls */}
-              <div className="flex items-center gap-3 bg-gray-50 dark:bg-slate-800 p-2 rounded-xl border border-gray-100 dark:border-slate-700">
+                            <div className="flex items-center gap-3 bg-gray-50 dark:bg-slate-800 p-2 rounded-xl border border-gray-100 dark:border-slate-700">
                 <motion.button 
                   whileTap={{ scale: 0.85 }}
                   transition={springConf}
@@ -168,8 +165,7 @@ const Cart = () => {
                 </motion.button>
               </div>
 
-              {/* Total per item & Delete */}
-              <div className="flex items-center gap-4 min-w-[140px] justify-end">
+                            <div className="flex items-center gap-4 min-w-[140px] justify-end">
                 <div className="flex flex-col text-start">
                   <span className="text-xs text-gray-400 dark:text-gray-500 font-medium">الإجمالي</span>
                   <span className="font-black text-gray-800 dark:text-white">{item.price * item.quantity} ج.م</span>
@@ -188,8 +184,7 @@ const Cart = () => {
           ))}
         </div>
 
-        {/* Order Summary & Checkout Form */}
-        <div className="lg:sticky lg:top-24 h-fit">
+                <div className="lg:sticky lg:top-24 h-fit">
           <div className="bg-white/80 dark:bg-slate-900/80 backdrop-blur-2xl saturate-150 p-7 rounded-3xl shadow-lg shadow-gray-100/50 dark:shadow-none border border-gray-100 dark:border-slate-800 space-y-6">
             
             <div className="border-b border-gray-100 dark:border-slate-800 pb-5 flex flex-col gap-2">

@@ -27,15 +27,12 @@ function App() {
 
   return (
     <div className={`min-h-screen flex flex-col font-cairo ${isAdminRoute ? '' : 'transition-colors duration-300'}`} dir="rtl">
-      {/* Global animated background for non-admin routes */}
-      {!isAdminRoute && <LiquidBackground />}
-      {/* Hide Navbar and Footer on Admin Routes */}
-      {!isAdminRoute && <Navbar />}
+            {!isAdminRoute && <LiquidBackground />}
+            {!isAdminRoute && <Navbar />}
       
       <main className={isAdminRoute ? '' : 'flex-grow container mx-auto px-4 py-8'}>
         <Routes>
-          {/* User Routes */}
-          <Route path="/" element={<Home />} />
+                    <Route path="/" element={<Home />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/favorites" element={<Favorites />} />
           <Route path="/login" element={<Login />} />
@@ -44,8 +41,7 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/my-orders" element={<MyOrders />} />
 
-          {/* Admin Routes */}
-          <Route path="/admin/login" element={<AdminLogin />} />
+                    <Route path="/admin/login" element={<AdminLogin />} />
           <Route path="/admin" element={<AdminLayout />}>
             <Route index element={<Dashboard />} />
             <Route path="users" element={<UsersManager />} />

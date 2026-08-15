@@ -11,7 +11,6 @@ const CURRENT_SETTINGS_VERSION = 'v3.0';
 
 export const SettingsProvider = ({ children }) => {
   const [productCategories, setProductCategories] = useState(() => {
-    // Force update if data version changes
     const savedVersion = localStorage.getItem('settings_data_version');
     if (savedVersion !== CURRENT_SETTINGS_VERSION) {
       localStorage.setItem('settings_data_version', CURRENT_SETTINGS_VERSION);
